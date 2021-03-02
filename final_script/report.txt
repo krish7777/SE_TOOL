@@ -1,0 +1,52 @@
+Full name: krish7777/food4all
+Contributors : 
+NamedUser(login="krish7777")
+NamedUser(login="arpit1912")
+NamedUser(login="dinkar64")
+NamedUser(login="sam3926")
+Description: None
+Date created: 2020-10-03 20:22:26
+Date of last push: 2020-11-30 08:53:33
+Number of forks: 2
+Number of stars: 0
+--------------------------------------------------
+Open Pull Requests :
+0
+closed Pull Requests :
+75
+Open Issues :
+0
+Closed Issues :
+2
+
+Last commit details : 
+commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
+Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
+Date:   Mon Nov 30 14:23:10 2020 +0530
+
+    updated production build
+
+Branches List : 
+ * main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/Modal1
+  remotes/origin/awards
+  remotes/origin/features
+  remotes/origin/main
+  remotes/origin/notif-krish
+
+Languages : 
+ {
+  "JavaScript": 239256,
+  "HTML": 4739,
+  "CSS": 4373,
+  "Less": 3892
+}
+User name;Files changed;Lines added;Lines deleted;Total lines (delta);Add./Del. ratio (1:n);Commit count
+Krishnendu Sudheesh;482;27496;4816;22680;0.175153;94
+arpit1912 ;288;3578;2544;1034;0.711012;63
+shreyansh ;62;622;366;256;0.588424;20
+dinkar ;155;2137;243;1894;0.113711;16
+dinkar64 ;64;3471;292;3179;0.0841256;16
+krish7777 ;3;21;0;21;0;3
+sam3926 ;1;2;2;0;1;1
