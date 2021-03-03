@@ -1,0 +1,23 @@
+Creation Date : 
+Last commit details : 
+commit b33a0b4723cb7a1fc39925c3374529b460ef5413
+Author: dinkar64 <dinkarrathi64@gmail.com>
+Date:   Tue Mar 2 09:31:42 2021 +0530
+
+    “data_extraction”
+
+Branches List : 
+ * main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+Contributors List & no of commits 
+      4	dinkar64
+     1	krish7777
+
+Each Contributor Commits and commit history 
+b33a0b4 - dinkar64, 5 hours ago : “data_extraction”
+365b1aa - dinkar64, 2 days ago : “data_extraction_script”
+57a3083 - dinkar64, 3 days ago : “python_script”
+34bc4bf - dinkar64, 8 days ago : “basic_report_script”
+5c6c1e2 - krish7777, 8 days ago : Initial commitCommands git log --oneline , git log --stat, git shortlog git log --author=<name> --no-merges
