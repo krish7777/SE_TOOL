@@ -23,3 +23,7 @@ do
      fi
 done
 echo -e "--------------------------------------------------------------------------------------------------------------------------------------"  >> ../report.txt
+
+printf "\nCommunity Profile : \n" >> ../report.txt
+curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/community/profile  >> ../report.txt
+
