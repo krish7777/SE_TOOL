@@ -21,3 +21,49 @@ b33a0b4 - dinkar64, 5 hours ago : “data_extraction”
 57a3083 - dinkar64, 3 days ago : “python_script”
 34bc4bf - dinkar64, 8 days ago : “basic_report_script”
 5c6c1e2 - krish7777, 8 days ago : Initial commitCommands git log --oneline , git log --stat, git shortlog git log --author=<name> --no-merges
+
+Last commit details : 
+commit 01a727aa91f1073f44a725376d4d7db51bb76048
+Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
+Date:   Thu Mar 4 02:43:20 2021 +0530
+
+    added basic extension, table for report, slight change in files changed
+
+Branches List : 
+ * main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+Languages : 
+ {
+  "JavaScript": 239256,
+  "HTML": 4739,
+  "CSS": 4373,
+  "Less": 3892
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+|      User Name     |  Files Changed |   Lines Added  |  Lines Deleted | Total Lines (delta)|  Add./Del. ratio (1:n) | Commit Count |
+--------------------------------------------------------------------------------------------------------------------------------------
+|           dinkar64 |              10|             313|              20|                 293|               0.0638978|             4|
+| Krishnendu Sudheesh|              30|            3623|              13|                3610|              0.00358819|             1|
+|          krish7777 |               1|               1|               0|                   1|                       0|             1|
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Community Profile : 
+{
+  "health_percentage": 16,
+  "description": null,
+  "documentation": null,
+  "files": {
+    "code_of_conduct": null,
+    "contributing": null,
+    "issue_template": null,
+    "pull_request_template": null,
+    "license": null,
+    "readme": {
+      "url": "https://api.github.com/repos/krish7777/food4all/contents/README.md",
+      "html_url": "https://github.com/krish7777/food4all/blob/main/README.md"
+    }
+  },
+  "updated_at": null
+}

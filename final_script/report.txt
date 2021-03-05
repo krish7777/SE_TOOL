@@ -1,0 +1,766 @@
+
+Last commit details : 
+commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
+Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
+Date:   Mon Nov 30 14:23:10 2020 +0530
+
+    updated production build
+
+Branches List : 
+ * main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/Modal1
+  remotes/origin/awards
+  remotes/origin/features
+  remotes/origin/main
+  remotes/origin/notif-krish
+
+Languages : 
+ {
+  "JavaScript": 239256,
+  "HTML": 4739,
+  "CSS": 4373,
+  "Less": 3892
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+|      User Name     |  Files Changed |   Lines Added  |  Lines Deleted | Total Lines (delta)|  Add./Del. ratio (1:n) | Commit Count |
+--------------------------------------------------------------------------------------------------------------------------------------
+| Krishnendu Sudheesh|             220|           27496|            4816|               22680|                0.175153|            94|
+|          arpit1912 |              90|            3578|            2544|                1034|                0.711012|            63|
+|          shreyansh |              28|             622|             366|                 256|                0.588424|            20|
+|             dinkar |             116|            2137|             243|                1894|                0.113711|            16|
+|           dinkar64 |              49|            3471|             292|                3179|               0.0841256|            16|
+|          krish7777 |               2|              21|               0|                  21|                       0|             3|
+|            sam3926 |               1|               2|               2|                   0|                       1|             1|
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Community Profile : 
+{
+  "health_percentage": 16,
+  "description": null,
+  "documentation": null,
+  "files": {
+    "code_of_conduct": null,
+    "contributing": null,
+    "issue_template": null,
+    "pull_request_template": null,
+    "license": null,
+    "readme": {
+      "url": "https://api.github.com/repos/krish7777/food4all/contents/README.md",
+      "html_url": "https://github.com/krish7777/food4all/blob/main/README.md"
+    }
+  },
+  "updated_at": null
+}
+File changes
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/comment.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;3;57;7;3
+Krishnendu Sudheesh;1;54;27;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/event.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;36;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/utils/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;31;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/users.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;10;129;13;10
+Krishnendu Sudheesh;8;577;79;8
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/upload.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;214;22;5
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/posts.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;8;126;50;8
+Krishnendu Sudheesh;2;76;39;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/message.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;99;0;3
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/donation.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;8;137;15;8
+Krishnendu Sudheesh;1;150;62;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/Procfile
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/gulpfile.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;28;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/manifest.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;25;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/robots.txt
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;3;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/favicon.ico
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/index.html
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;69;21;2
+dinkar ;1;0;0;1
+dinkar64 ;1;4;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/logo512.png
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/public/logo192.png
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/README.md
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;68;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/package-lock.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;7;17134;92;7
+arpit1912 ;1;8;3;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/craco.config.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;24;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/debug.log
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;5;0;5
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/package.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;8;71;5;8
+arpit1912 ;1;2;0;1
+dinkar ;1;0;0;1
+dinkar64 ;1;5;1;1
+shreyansh ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/.gitignore
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;24;1;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/manifest.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;25;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/main.86bf8c39.chunk.js.map
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/runtime-main.09b85ec0.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;2;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/main.86bf8c39.chunk.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;2;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/2.0673eb3e.chunk.js.map
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/2.0673eb3e.chunk.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/runtime-main.09b85ec0.js.map
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/js/2.0673eb3e.chunk.js.LICENSE.txt
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;63;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/css/2.3f672790.chunk.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;2;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/css/main.12a7f78b.chunk.css.map
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/css/2.3f672790.chunk.css.map
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/static/css/main.12a7f78b.chunk.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/robots.txt
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/favicon.ico
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/index.html
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;6;6;5;6
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/precache-manifest.89b95aea4732f66280e8d2bf48e14832.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;30;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/service-worker.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;6;44;5;6
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/asset-manifest.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;6;74;49;6
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/logo512.png
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/build/logo192.png
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;54;15;5
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/themes/light-theme.less
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;4;14;1;4
+shreyansh ;2;43;2;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/themes/dark-theme.less
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;31;11;3
+shreyansh ;2;48;6;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/App.less
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/utils/setAuthToken.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;13;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/utils/common.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;49;1;3
+arpit1912 ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/serviceWorker.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;141;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/store.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;7;55;14;7
+dinkar ;3;10;1;3
+arpit1912 ;2;6;2;2
+dinkar64 ;1;2;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/App.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;12;210;120;12
+arpit1912 ;4;25;189;4
+dinkar ;3;7;0;3
+dinkar64 ;2;234;78;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/index.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;5;53;4;5
+Krishnendu Sudheesh;2;18;0;2
+dinkar ;1;0;0;1
+dinkar64 ;1;13;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/setupTests.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;5;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/ListModal/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;2;36;24;2
+Krishnendu Sudheesh;1;11;12;1
+arpit1912 ;1;3;29;1
+dinkar64 ;1;57;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/ListModal/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;1;6;1
+dinkar ;1;21;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/ListModal/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/DonateModal/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;10;279;69;10
+Krishnendu Sudheesh;1;131;132;1
+dinkar ;1;34;7;1
+dinkar64 ;1;89;94;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/DonateModal/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;3;16;2;3
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Home/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;4;136;137;4
+shreyansh ;4;76;13;4
+Krishnendu Sudheesh;3;155;122;3
+dinkar ;3;60;8;3
+dinkar64 ;1;5;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Home/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;16;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Home/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;10;0;1
+arpit1912 ;1;1;1;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Home/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Home/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;4;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/LeftSidePanel/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;9;194;64;9
+Krishnendu Sudheesh;4;162;95;4
+shreyansh ;3;27;28;3
+dinkar ;1;0;0;1
+dinkar64 ;1;1;2;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/LeftSidePanel/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;5;87;24;5
+Krishnendu Sudheesh;3;31;48;3
+dinkar ;1;0;0;1
+dinkar64 ;1;6;6;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/LeftSidePanel/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;4;20;0;4
+Krishnendu Sudheesh;2;15;9;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/LeftSidePanel/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+arpit1912 ;1;3;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/HomeCenter/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;18;217;105;18
+Krishnendu Sudheesh;5;137;129;5
+dinkar64 ;4;87;8;4
+dinkar ;2;40;3;2
+shreyansh ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/HomeCenter/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;11;150;99;11
+Krishnendu Sudheesh;2;37;37;2
+dinkar ;1;0;0;1
+shreyansh ;1;4;4;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/HomeCenter/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;6;38;9;6
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/HomeCenter/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar64 ;2;9;2;2
+arpit1912 ;1;6;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Leaderboard/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;6;130;149;6
+Krishnendu Sudheesh;2;89;86;2
+dinkar ;2;219;16;2
+sam3926 ;1;2;2;1
+shreyansh ;1;42;6;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Leaderboard/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;3;0;1
+dinkar ;1;17;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Leaderboard/actions.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;9;1;1
+dinkar ;1;8;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Leaderboard/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;16;708;619;16
+arpit1912 ;13;322;335;13
+shreyansh ;13;164;57;13
+dinkar ;6;216;40;6
+dinkar64 ;5;329;27;5
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/FollowersList/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;62;8;3
+arpit1912 ;1;1;4;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;8;26;82;8
+Krishnendu Sudheesh;6;203;80;6
+shreyansh ;4;43;21;4
+dinkar ;2;13;0;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;9;61;14;9
+Krishnendu Sudheesh;8;167;31;8
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;3;0;1
+dinkar ;1;4;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/ProfilePic/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;56;1;2
+arpit1912 ;1;4;2;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;14;4;5
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Profile/EditProfile/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;162;104;3
+arpit1912 ;1;3;7;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Discover/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;21;447;422;21
+dinkar ;8;151;60;8
+Krishnendu Sudheesh;6;346;331;6
+dinkar64 ;6;362;59;6
+shreyansh ;5;38;15;5
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Discover/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;8;181;107;8
+dinkar ;3;6;54;3
+dinkar64 ;1;17;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Discover/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;4;26;9;4
+dinkar ;2;7;0;2
+dinkar64 ;1;7;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Discover/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;4;0;1
+shreyansh ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Discover/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Awards/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;103;69;3
+dinkar ;1;108;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/ComingSoon/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;11;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/EventModal/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;3;234;2;3
+arpit1912 ;2;181;189;2
+Krishnendu Sudheesh;1;135;136;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/EventModal/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;6;6;1
+dinkar ;1;10;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/PrivateRoute.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;31;4;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/Login.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;262;4;3
+dinkar ;1;0;0;1
+shreyansh ;1;46;35;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;44;0;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;6;96;5;6
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;7;1;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Auth/Register.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;10;500;58;10
+dinkar ;1;0;0;1
+dinkar64 ;1;66;4;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Comments/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;5;89;73;5
+Krishnendu Sudheesh;2;39;40;2
+dinkar ;1;0;0;1
+dinkar64 ;1;114;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Comments/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;2;13;1;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/PostModal/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;7;78;36;7
+Krishnendu Sudheesh;2;93;83;2
+dinkar ;1;0;0;1
+dinkar64 ;1;72;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/PostModal/action.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;4;14;1;4
+Krishnendu Sudheesh;1;3;2;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/PostModal/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;6;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/LoadingScreen/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;10;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Landing/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;40;2;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Community/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;3;97;60;3
+dinkar ;2;156;5;2
+Krishnendu Sudheesh;1;24;26;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Community/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;7;3;1
+dinkar ;1;19;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Community/actions.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;10;1;1
+dinkar ;1;8;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Community/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/MapComp/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;63;50;3
+dinkar ;1;0;0;1
+dinkar64 ;1;118;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/MapComp/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;68;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Navbar/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;13;179;102;13
+arpit1912 ;6;89;23;6
+shreyansh ;3;15;18;3
+dinkar ;2;17;2;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Navbar/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;49;1;3
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Navbar/actions.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;59;5;3
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Navbar/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;9;0;3
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/Navbar/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;8;0;2
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/MapDiscover/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;2;142;4;2
+Krishnendu Sudheesh;1;7;8;1
+arpit1912 ;1;3;4;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/MapDiscover/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;68;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;305;275;5
+dinkar ;3;250;1;3
+arpit1912 ;1;7;8;1
+shreyansh ;1;13;12;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/MessageCard/index.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;40;0;1
+shreyansh ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/reducer.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;30;18;2
+dinkar ;1;15;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/actions.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;62;21;3
+arpit1912 ;1;1;5;1
+dinkar ;1;25;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/styles.css
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;3;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/components/messages/constants.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;7;0;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/frontend/src/App.test.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;9;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/README.md
+User name; Files changed; Lines added; Lines deleted; Commit count
+krish7777 ;3;21;0;3
+Krishnendu Sudheesh;1;15;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/package-lock.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;5;2642;189;5
+arpit1912 ;2;11;1;2
+dinkar64 ;2;614;0;2
+dinkar ;1;0;0;1
+shreyansh ;1;135;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/avatar/1606724936867-arpit-foundation.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/avatar/1606725487836-k.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/avatar/1606724741196-sm-foundation.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/avatar/1606724509690-dinkar.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/leaderboard/leaderboard.png
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/profile/1606724936867-arpit-foundation.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/profile/1606725487836-k.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/profile/1606724741196-sm-foundation.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/profile/1606724509690-dinkar.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/certificates/1605778495987-Students
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/certificates/1606126293442-Web_App_Concept.pdf
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/donations/1606725020031-honey.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/donations/1606724641377-wheat-flour.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/donations/1606725116154-sugar.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/donations/1606724365966-rice.jpeg
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/awards/leaderboardTop.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/awards/diamond.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/awards/silver.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/images/awards/gold.jpg
+User name; Files changed; Lines added; Lines deleted; Commit count
+shreyansh ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/middlewares/isOrg.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;34;0;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/middlewares/isDonor.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;2;34;0;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/middlewares/isAuth.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;3;31;2;3
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/server.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;11;120;112;11
+arpit1912 ;3;9;4;3
+dinkar ;2;63;1;2
+dinkar64 ;1;13;2;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Thread.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;28;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Post.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;2;51;4;2
+Krishnendu Sudheesh;1;16;17;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Event.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;1;35;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Comment.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;2;33;0;2
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/User.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;6;96;16;6
+arpit1912 ;2;8;0;2
+dinkar ;1;0;0;1
+dinkar64 ;1;28;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Notification.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;14;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/models/Donation.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+arpit1912 ;5;14;4;5
+Krishnendu Sudheesh;1;48;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/logs/refs/heads/main
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/logs/refs/remotes/origin/HEAD
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/logs/HEAD
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/objects/pack/pack-74bbbf0903b3f5278b3e77b6b58f39ee4ca27445.idx
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/objects/pack/pack-74bbbf0903b3f5278b3e77b6b58f39ee4ca27445.pack
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/index
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/description
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/packed-refs
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/refs/heads/main
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/refs/remotes/origin/HEAD
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/info/exclude
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-merge-commit.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-receive.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/commit-msg.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/prepare-commit-msg.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/applypatch-msg.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-rebase.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-applypatch.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-commit.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/update.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/fsmonitor-watchman.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/pre-push.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/hooks/post-update.sample
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/config
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/FETCH_HEAD
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.git/HEAD
+User name; Files changed; Lines added; Lines deleted; Commit count
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/package.json
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;11;42;24;11
+arpit1912 ;2;5;3;2
+dinkar64 ;2;16;4;2
+dinkar ;1;0;0;1
+shreyansh ;1;1;1;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/.gitignore
+User name; Files changed; Lines added; Lines deleted; Commit count
+Krishnendu Sudheesh;1;1;0;1
+dinkar ;1;0;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/config/passport.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;24;0;1
+/home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/config/keys.js
+User name; Files changed; Lines added; Lines deleted; Commit count
+dinkar ;1;0;0;1
+dinkar64 ;1;4;0;1
