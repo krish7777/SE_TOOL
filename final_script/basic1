@@ -1,4 +1,4 @@
-printf "\nFramework : \n" >> ../report.txt
+printf "\n \n Framework : \n" >> ../report.txt
 cd food4all
 for i in Ruby Django Angular ASP.NET Meteor Laravel Spring Play CodeIgniter React
 do

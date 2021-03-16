@@ -28,9 +28,10 @@ printf "\nCommunity Profile : \n" >> ../report.txt
 curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/community/profile  >> ../report.txt
 
 printf "\ncommit seggregation : \n" >> ../report.txt
-printf "\nUI \n" >> ../report.txt
-git log --pretty="%an" --grep="UI" --no-merges >> ../report.txt
-printf "\nBug \n" >> ../report.txt
-git log --pretty="%an" --grep="bug" --no-merges >> ../report.txt
-printf "\nbackend \n" >> ../report.txt
-git log --pretty="%an" --grep="backend" --no-merges >> ../report.txt
+
+for i in UI Bug Backend Frontend Test Deploy
+do
+printf "\n $i \n" >> ../report.txt
+git log --pretty="%an" -i --grep="$i" --no-merges >> ../report.txt
+done
+

@@ -12,32 +12,32 @@ repo = g.get_repo("krish7777/food4all")
 
 def print_repo(repo):
     # repository full name
-    print("Full name:", repo.full_name)
+    print("\n Full name:", repo.full_name)
     # repository contributors 
-    print("Contributors : ")
+    print("\n Contributors : ")
     for contributors in repo.get_contributors():
     	print(contributors)
     # repository description
-    print("Description:", repo.description)
+    print("\n Description:", repo.description)
     # the date of when the repo was created
-    print("Date created:", repo.created_at)
+    print("\n Date created:", repo.created_at)
     # the date of the last git push
-    print("Date of last push:", repo.pushed_at)
+    print("\n Date of last push:", repo.pushed_at)
     # number of forks
-    print("Number of forks:", repo.forks)
+    print("\n Number of forks:", repo.forks)
     # number of stars
-    print("Number of stars:", repo.stargazers_count)
+    print("\n Number of stars:", repo.stargazers_count)
     print("-"*50)
     
     # No of pull requests 
-    print("Open Pull Requests :")
+    print("\n Open Pull Requests :")
     pulls = repo.get_pulls(state='open', sort='created')
     countop = 0
     for pr in pulls:
     	countop += 1
     print(countop)
     
-    print("closed Pull Requests :")
+    print("\n closed Pull Requests :")
     pulls_closed = repo.get_pulls(state='closed', sort='created')
     countcp = 0
     for pr in pulls_closed:
@@ -45,14 +45,14 @@ def print_repo(repo):
     print(countcp)
 
     # no of Issues 
-    print("Open Issues :")
+    print("\n Open Issues :")
     count = 0
     open_issues = repo.get_issues(state='open')
     for issue in open_issues:
     	count +=1
     print(count-countop)
     
-    print("Closed Issues :")	
+    print("\n Closed Issues :")	
     count = 0
     closed_issues = repo.get_issues(state='closed')
     for issue in closed_issues:
