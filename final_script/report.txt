@@ -1,3 +1,23 @@
+Full name: krish7777/food4all
+Contributors : 
+NamedUser(login="krish7777")
+NamedUser(login="arpit1912")
+NamedUser(login="dinkar64")
+NamedUser(login="sam3926")
+Description: None
+Date created: 2020-10-03 20:22:26
+Date of last push: 2020-11-30 08:53:33
+Number of forks: 2
+Number of stars: 0
+--------------------------------------------------
+Open Pull Requests :
+0
+closed Pull Requests :
+75
+Open Issues :
+0
+Closed Issues :
+2
 
 Last commit details : 
 commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
@@ -52,6 +72,46 @@ Community Profile :
   },
   "updated_at": null
 }
+
+commit seggregation : 
+
+UI 
+shreyansh
+arpit1912
+shreyansh
+shreyansh
+shreyansh
+shreyansh
+shreyansh
+
+Bug 
+Krishnendu Sudheesh
+arpit1912
+arpit1912
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+arpit1912
+arpit1912
+Krishnendu Sudheesh
+arpit1912
+arpit1912
+arpit1912
+arpit1912
+shreyansh
+
+backend 
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+arpit1912
+Krishnendu Sudheesh
+Krishnendu Sudheesh
+Framework ASP.NET
+Framework Play
+Framework React
+	
 File changes
 /home/dinkar/Desktop/sem_6/se_lab/tool_dev/SE_TOOL/final_script/food4all/routes/comment.js
 User name; Files changed; Lines added; Lines deleted; Commit count
