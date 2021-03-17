@@ -24,10 +24,26 @@ do
 done
 echo -e "--------------------------------------------------------------------------------------------------------------------------------------"  >> ../report.txt
 
-printf "\nCommunity Profile : \n" >> ../report.txt
+printf "\n No of commits on each Week Day : \n" >> ../report.txt
+
+printf "\n\t Day - No of commits \n" >> ../report.txt
+
+for week in Mon Tue Wed Thu Fri Sat Sun
+do
+counter=0
+printf "\n" >> ../report.txt
+while read rev 
+do
+    let counter++
+done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{print $1}' )
+printf "\t $week - $counter" >> ../report.txt
+done
+
+printf "\n\nCommunity Profile of the repository: \n" >> ../report.txt
 curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/community/profile  >> ../report.txt
 
-printf "\ncommit seggregation : \n" >> ../report.txt
+
+printf "\n\n commit seggregation : \n" >> ../report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
 do

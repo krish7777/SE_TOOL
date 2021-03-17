@@ -65,7 +65,19 @@ Languages :
 |            sam3926 |               1|               2|               2|                   0|                       1|             1|
 --------------------------------------------------------------------------------------------------------------------------------------
 
-Community Profile : 
+ No of commits on each Week Day : 
+
+	 Day - No of commits 
+
+	 Mon - 43
+	 Tue - 13
+	 Wed - 11
+	 Thu - 18
+	 Fri - 10
+	 Sat - 47
+	 Sun - 71
+
+Community Profile of the repository: 
 {
   "health_percentage": 16,
   "description": null,
@@ -84,7 +96,8 @@ Community Profile :
   "updated_at": null
 }
 
-commit seggregation : 
+
+ commit seggregation : 
 
  UI 
 Krishnendu Sudheesh
