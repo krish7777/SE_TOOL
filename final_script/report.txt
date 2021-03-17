@@ -1,35 +1,4 @@
 
- Full name: krish7777/food4all
-
- Contributors : 
-NamedUser(login="krish7777")
-NamedUser(login="arpit1912")
-NamedUser(login="dinkar64")
-NamedUser(login="sam3926")
-
- Description: None
-
- Date created: 2020-10-03 20:22:26
-
- Date of last push: 2020-11-30 08:53:33
-
- Number of forks: 2
-
- Number of stars: 0
---------------------------------------------------
-
- Open Pull Requests :
-0
-
- closed Pull Requests :
-75
-
- Open Issues :
-0
-
- Closed Issues :
-2
-
 Last commit details : 
 commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
 Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
@@ -100,53 +69,20 @@ Community Profile of the repository:
  commit seggregation : 
 
  UI 
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-shreyansh
 arpit1912
-shreyansh
-shreyansh
-shreyansh
-shreyansh
 Krishnendu Sudheesh
 shreyansh
-Krishnendu Sudheesh
 
  Bug 
-Krishnendu Sudheesh
-arpit1912
 arpit1912
 Krishnendu Sudheesh
-Krishnendu Sudheesh
-arpit1912
-arpit1912
-Krishnendu Sudheesh
-arpit1912
-arpit1912
-arpit1912
-arpit1912
 shreyansh
 
  Backend 
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
 arpit1912
-Krishnendu Sudheesh
 Krishnendu Sudheesh
 
  Frontend 
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
-Krishnendu Sudheesh
 Krishnendu Sudheesh
 
  Test 
