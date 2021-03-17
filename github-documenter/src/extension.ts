@@ -28,10 +28,10 @@ export function activate(context: vscode.ExtensionContext) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
 		}
 		vscode.window.showInformationMessage('Please Enter the Github Repository name');
-		let ud = await vscode.window.showInputBox();
+		let githubName = await vscode.window.showInputBox();
 		let folderUri = vscode.workspace.workspaceFolders[0].uri;
 
-		ud && vscode.window.showInformationMessage(folderUri.path);
+		githubName && vscode.window.showInformationMessage(folderUri.path);
 
 
 		await checkFileNames(folderUri);

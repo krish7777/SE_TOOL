@@ -621,3 +621,8 @@ Framework React
 /* User name; Lines added; Lines deleted; Commit count */
 /* dinkar ;0;0;1 */
 /* dinkar64 ;4;0;1 */
+
+Repository Domain:
+Web Application
+Stack Used:
+MERN Stack
