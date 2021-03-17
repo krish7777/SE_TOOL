@@ -36,12 +36,48 @@ export function activate(context: vscode.ExtensionContext) {
 
 		await checkFileNames(folderUri);
 		console.log(technologiesUsed);
-		if (technologiesUsed.includes("React"))
+		let stackUsed = ''
+		let domain = ''
+		if (technologiesUsed.includes("React") && technologiesUsed.includes("MongoDB") && technologiesUsed.includes("Express")) {
 			console.log("MERN Stack");
-		if (technologiesUsed.includes("Angular") && technologiesUsed.includes("MongoDB") && technologiesUsed.includes("Express"))
+			stackUsed = 'MERN Stack';
+			domain = "Web Application"
+		}
+
+		if (technologiesUsed.includes("Angular") && technologiesUsed.includes("MongoDB") && technologiesUsed.includes("Express")) {
 			console.log("MEAN Stack");
-		if (technologiesUsed.includes("Vue") && technologiesUsed.includes("MongoDB") && technologiesUsed.includes("Express"))
+			stackUsed = 'MEAN Stack';
+			domain = "Web Application"
+		}
+
+		if (technologiesUsed.includes("Vue") && technologiesUsed.includes("MongoDB") && technologiesUsed.includes("Express")) {
 			console.log("MEVN Stack");
+			stackUsed = 'MEVN Stack';
+			domain = "Web Application"
+		}
+
+		if (technologiesUsed.includes("React") && technologiesUsed.includes("psql") && technologiesUsed.includes("Express")) {
+			console.log("PERN Stack");
+			stackUsed = 'PERN Stack';
+			domain = "Web Application"
+		}
+
+		if (technologiesUsed.includes("react-native") || technologiesUsed.includes("flutter")) {
+			domain = "Mobile Application";
+		}
+
+		if (technologiesUsed.includes("ember") || technologiesUsed.includes("flask") || technologiesUsed.includes("django") || technologiesUsed.includes("rails") || technologiesUsed.includes("laravel") || technologiesUsed.includes("spring")) {
+			domain = "Web Application";
+		}
+
+		if (domain) {
+			runGitCommandInTerminal(`echo "Repository Domain:" >> report.txt && echo ${domain} >> report.txt`, folderUri.path)
+		}
+
+		if (stackUsed) {
+			runGitCommandInTerminal(`echo "Stack Used:" >> report.txt && echo ${stackUsed} >> report.txt`, folderUri.path)
+		}
+
 
 
 
@@ -57,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// 	}
 		// });
 
-		runGitCommandInTerminal('git branch -a >> yoo3.txt', folderUri.path);
+		runGitCommandInTerminal('git branch -a >> report.txt', folderUri.path);
 
 	});
 
@@ -75,6 +111,7 @@ export async function checkFileNames(folderUri: any) {
 		else {
 			//console.log(name + " - " + type);
 			if (name == "package.json") {
+				//FOR JAVASCRIPT BASED REPOS
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
 				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
 				const packageText = packageBuffer.toString();
@@ -109,13 +146,75 @@ export async function checkFileNames(folderUri: any) {
 					console.log("SQL")
 					technologiesUsed.push("SQL");
 				}
+				if (packageText.includes("psql")) {
+					console.log("psql")
+					technologiesUsed.push("psql");
+				}
 				if (packageText.includes("express")) {
 					console.log("Express")
 					technologiesUsed.push("Express");
 				}
-
-
-
+				if (packageText.includes("react-native")) {
+					console.log("react-native")
+					technologiesUsed.push("react-native");
+				}
+				if (packageText.includes("ember")) {
+					console.log("ember")
+					technologiesUsed.push("ember");
+				}
+			}
+			else if (name == "requirements.txt") {
+				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
+				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
+				const packageText = packageBuffer.toString();
+				if (packageText.includes("django")) {
+					console.log("Django")
+					technologiesUsed.push("django");
+				}
+				if (packageText.includes("flask")) {
+					console.log("Flask")
+					technologiesUsed.push("flask");
+				}
+			}
+			else if (name == "Gemfile") {
+				// For Ruby Apps
+				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
+				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
+				const packageText = packageBuffer.toString();
+				if (packageText.includes("rails")) {
+					console.log("Ruby on rails")
+					technologiesUsed.push("rails");
+				}
+			}
+			else if (name == "composer.json") {
+				//FOR PHP Apps
+				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
+				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
+				const packageText = packageBuffer.toString();
+				if (packageText.includes("laravel")) {
+					console.log("Laravel")
+					technologiesUsed.push("laravel");
+				}
+			}
+			else if (name == "pom.xml") {
+				//FOR Java Apps
+				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
+				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
+				const packageText = packageBuffer.toString();
+				if (packageText.includes("spring")) {
+					console.log("Spring")
+					technologiesUsed.push("spring");
+				}
+			}
+			else if (name == "pubspec.yaml") {
+				//FOR Java Apps
+				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
+				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
+				const packageText = packageBuffer.toString();
+				if (packageText.includes("flutter")) {
+					console.log("Flutter")
+					technologiesUsed.push("flutter");
+				}
 			}
 		}
 

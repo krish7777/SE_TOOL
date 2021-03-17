@@ -5,5 +5,13 @@
     "mongo",
     "express",
     "sql",
-    "antd"
+    "antd",
+    "react-native",
+    "ember",
+    "flask",
+    "django",
+    "rails",
+    "laravel",
+    "spring",
+    "flutter"
 ]
