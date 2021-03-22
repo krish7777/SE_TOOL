@@ -1,0 +1,41 @@
+{
+    "MERN stack": {
+        "technologies": [
+            "react",
+            "mongo",
+            "express"
+        ],
+        "domain": "Web Application"
+    },
+    "MEAN stack": {
+        "technologies": [
+            "angular",
+            "mongo",
+            "express"
+        ],
+        "domain": "Web Application"
+    },
+    "MEVN stack": {
+        "technologies": [
+            "vue",
+            "mongo",
+            "express"
+        ],
+        "domain": "Web Application"
+    },
+    "PERN stack": {
+        "technologies": [
+            "react",
+            "psql",
+            "express"
+        ],
+        "domain": "Web Application"
+    },
+    "Django stack": {
+        "technologies": [
+            "django",
+            "mysql"
+        ],
+        "domain": "Web Application"
+    }
+}

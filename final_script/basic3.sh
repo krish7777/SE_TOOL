@@ -4,11 +4,11 @@ files=$(find $(pwd) -type f -name "*.js" | awk '{printf "%s\n", $1}')
 IFS=$'\n'
 for file in $files
 do
-echo -e "/* File contributors */"  >> ../report.txt
-echo -e "/* $file */" >> ../report.txt
+echo -e "/* File contributors */"  >> $file
+echo -e "/* $file */" >> $file
 users=$(git shortlog -sn --no-merges -- $file | awk '{printf "%s %s\n", $2, $3}')
 IFS=$'\n'
-echo -e "/* User name; Lines added; Lines deleted; Commit count */"  >> ../report.txt
+echo -e "/* User name; Lines added; Lines deleted; Commit count */"  >> $file
 for userName in $users
 do
      time=$(git log --author="$userName" --no-merges --shortstat -- $file)
@@ -16,9 +16,9 @@ do
      countCommits=$(git shortlog -sn --no-merges --author="$userName" -- $file | awk '{print $1}')
      if [[ ${result} != ';;;;' ]]
      then
-        echo -e "/* $userName; $result; $countCommits; */"  >> ../report.txt
-        echo -e "/* Commits made to File : */"  >> ../report.txt
-        echo -e "/* $time */"  >> ../report.txt
+        echo -e "/* $userName; $result; $countCommits; */"  >> $file
+        echo -e "/* Commits made to File : */"  >> $file
+        echo -e "/* $time */"  >> $file
      fi
 done
 done

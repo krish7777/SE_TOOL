@@ -48,6 +48,6 @@ printf "\n\n commit seggregation : \n" >> ../report.txt
 for i in UI Bug Backend Frontend Test Deploy
 do
 printf "\n $i \n" >> ../report.txt
-git log --pretty="%an" -i --grep="$i" --no-merges >> ../report.txt
+git log --pretty="%an" -i --grep="$i" --no-merges | sort -u >> ../report.txt
 done
 
