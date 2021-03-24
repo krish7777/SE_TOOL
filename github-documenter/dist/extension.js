@@ -67,7 +67,7 @@ function activate(context) {
         vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
         let githubName = yield vscode.window.showInputBox();
         let folderUri = vscode.workspace.workspaceFolders[0].uri;
-        githubName && vscode.window.showInformationMessage(folderUri.path);
+        githubName && vscode.window.showInformationMessage('The detailed report will be generated in report.txt file. Please wait a few seconds :)');
         console.log("github name - ", githubName);
         let res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}`);
         let data = res.data;
@@ -105,6 +105,7 @@ function activate(context) {
         let closed_pull = data && data.length;
         let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\n`;
         console.log("final", finalString);
+        terminal_1.runGitCommandInTerminal('rm report.txt', folderUri.path);
         terminal_1.runGitCommandInTerminal(`printf "${finalString}" >> report.txt`, folderUri.path);
         yield checkFileNames(folderUri);
         console.log(technologiesUsed);
@@ -187,7 +188,38 @@ test=$(git log --pretty="%an" -i --grep="Test" --no-merges | sort -u)
 deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 			`, folderUri.path);
     }));
+    let disposable2 = vscode.commands.registerTextEditorCommand('github-documenter.generateDocs', () => __awaiter(this, void 0, void 0, function* () {
+        if (!vscode.workspace.workspaceFolders) {
+            return vscode.window.showInformationMessage('No folder or workspace opened');
+        }
+        console.log("running");
+        const editor = vscode.window.activeTextEditor;
+        let folderUri = vscode.workspace.workspaceFolders[0].uri;
+        if (editor) {
+            console.log("has editor");
+            let document = editor.document.uri.path;
+            document = document.replace(':', '');
+            vscode.window.showInformationMessage('The detailed information will be shown at the bottom of the file');
+            terminal_1.runGitCommandInTerminal(`users=$(git shortlog -sn --no-merges -- ${document} | awk '{printf "%s %s\\n", $2, $3}')
+IFS=$'\\n'
+printf "\\n"
+echo -e "/* User name; Lines added; Lines deleted; Commit count */"  >> ${document}
+for userName in $users
+do
+time=$(git log --author="$userName" --no-merges --shortstat -- ${document})
+result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%s;%s", inserted, deleted}' -)
+countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
+if [[ \${result} != ';;;;' ]]
+then
+echo -e "/* $userName; $result; $countCommits; */"  >> ${document}
+echo -e "/* Commits made to file : */"  >> ${document}
+echo -e "/* $time */"  >> ${document}
+fi
+done`, folderUri.path);
+        }
+    }));
     context.subscriptions.push(disposable);
+    context.subscriptions.push(disposable2);
 }
 exports.activate = activate;
 function checkFileNames(folderUri) {
