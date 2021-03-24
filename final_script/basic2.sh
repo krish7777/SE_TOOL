@@ -3,6 +3,8 @@ printf "\nLast commit details : \n" >> ../report.txt
 git log -1  >> ../report.txt
 printf "\nBranches List : \n " >> ../report.txt
 git branch -a >> ../report.txt
+printf "\nBranches Last Commit and Committer: \n " >> ../report.txt
+git for-each-ref --sort='-committerdate:iso8601' --format='%(committerdate:default)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t >> ../report.txt
 printf "\nLanguages : \n " >> ../report.txt
 curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/languages  >> ../report.txt
 

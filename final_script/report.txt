@@ -46,6 +46,14 @@ Branches List :
   remotes/origin/main
   remotes/origin/notif-krish
 
+Branches Last Commit and Committer: 
+ Mon Nov 30 14:23:10 2020 +0530  origin/main         Krishnendu Sudheesh
+Mon Nov 30 14:23:10 2020 +0530  origin/HEAD         Krishnendu Sudheesh
+Mon Nov 30 12:52:39 2020 +0530  origin/features     arpit1912
+Sun Nov 29 18:29:15 2020 +0530  origin/notif-krish  Krishnendu Sudheesh
+Wed Nov 25 15:40:27 2020 +0530  origin/awards       dinkar
+Sat Nov 21 16:51:19 2020 +0530  origin/Modal1       dinkar
+
 Languages : 
  {
   "JavaScript": 239256,
