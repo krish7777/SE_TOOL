@@ -44,9 +44,9 @@ const vscode = __importStar(__webpack_require__(1));
 const terminal_1 = __webpack_require__(2);
 const path_1 = __webpack_require__(3);
 const { exec } = __webpack_require__(4);
-const fs_1 = __importDefault(__webpack_require__(52));
+const fs_1 = __importDefault(__webpack_require__(5));
 const path_2 = __importDefault(__webpack_require__(3));
-const axios_1 = __importDefault(__webpack_require__(5));
+const axios_1 = __importDefault(__webpack_require__(6));
 const acorn = __webpack_require__(53);
 let technologiesUsed = [];
 //let shellcode = fs.readFileSync('script.txt')
@@ -269,6 +269,7 @@ done`, folderUri.path);
         console.log("running");
         const editor = vscode.window.activeTextEditor;
         let workspaceFolders = vscode.workspace.workspaceFolders;
+        let folderUri = vscode.workspace.workspaceFolders[0].uri;
         if (editor) {
             let currentFile = editor.document.fileName;
             if (currentFile.toLowerCase().endsWith('.js')) {
@@ -305,6 +306,12 @@ done`, folderUri.path);
                             vscode.workspace.openTextDocument(item === null || item === void 0 ? void 0 : item.description).then(document => {
                                 vscode.window.showTextDocument(document, { preview: false });
                             });
+                        });
+                        let document = editor.document.uri.path;
+                        document = document.replace(':', '');
+                        terminal_1.runGitCommandInTerminal(`echo "/*Files Importing this file */" >> ${document}`, folderUri.path);
+                        filesThatImportCurrentFile.map(function (file) {
+                            terminal_1.runGitCommandInTerminal(`echo "/* ${file} */" >> ${document}`, folderUri.path);
                         });
                     }
                     else {
@@ -515,22 +522,29 @@ module.exports = require("child_process");;
 
 /***/ }),
 /* 5 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module) => {
 
-module.exports = __webpack_require__(6);
+"use strict";
+module.exports = require("fs");;
 
 /***/ }),
 /* 6 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+module.exports = __webpack_require__(7);
+
+/***/ }),
+/* 7 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var bind = __webpack_require__(8);
-var Axios = __webpack_require__(9);
-var mergeConfig = __webpack_require__(47);
-var defaults = __webpack_require__(15);
+var utils = __webpack_require__(8);
+var bind = __webpack_require__(9);
+var Axios = __webpack_require__(10);
+var mergeConfig = __webpack_require__(48);
+var defaults = __webpack_require__(16);
 
 /**
  * Create an instance of Axios
@@ -563,18 +577,18 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(48);
-axios.CancelToken = __webpack_require__(49);
-axios.isCancel = __webpack_require__(14);
+axios.Cancel = __webpack_require__(49);
+axios.CancelToken = __webpack_require__(50);
+axios.isCancel = __webpack_require__(15);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(50);
+axios.spread = __webpack_require__(51);
 
 // Expose isAxiosError
-axios.isAxiosError = __webpack_require__(51);
+axios.isAxiosError = __webpack_require__(52);
 
 module.exports = axios;
 
@@ -583,13 +597,13 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var bind = __webpack_require__(8);
+var bind = __webpack_require__(9);
 
 /*global toString:true*/
 
@@ -941,7 +955,7 @@ module.exports = {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ ((module) => {
 
 "use strict";
@@ -959,17 +973,17 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var buildURL = __webpack_require__(10);
-var InterceptorManager = __webpack_require__(11);
-var dispatchRequest = __webpack_require__(12);
-var mergeConfig = __webpack_require__(47);
+var utils = __webpack_require__(8);
+var buildURL = __webpack_require__(11);
+var InterceptorManager = __webpack_require__(12);
+var dispatchRequest = __webpack_require__(13);
+var mergeConfig = __webpack_require__(48);
 
 /**
  * Create a new instance of Axios
@@ -1061,13 +1075,13 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -1138,13 +1152,13 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -1197,16 +1211,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var transformData = __webpack_require__(13);
-var isCancel = __webpack_require__(14);
-var defaults = __webpack_require__(15);
+var utils = __webpack_require__(8);
+var transformData = __webpack_require__(14);
+var isCancel = __webpack_require__(15);
+var defaults = __webpack_require__(16);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -1283,13 +1297,13 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 /**
  * Transform the data for a request or a response
@@ -1310,7 +1324,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ ((module) => {
 
 "use strict";
@@ -1322,14 +1336,14 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var normalizeHeaderName = __webpack_require__(16);
+var utils = __webpack_require__(8);
+var normalizeHeaderName = __webpack_require__(17);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -1345,10 +1359,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(17);
+    adapter = __webpack_require__(18);
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(27);
+    adapter = __webpack_require__(28);
   }
   return adapter;
 }
@@ -1427,13 +1441,13 @@ module.exports = defaults;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -1446,20 +1460,20 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var settle = __webpack_require__(18);
-var cookies = __webpack_require__(21);
-var buildURL = __webpack_require__(10);
-var buildFullPath = __webpack_require__(22);
-var parseHeaders = __webpack_require__(25);
-var isURLSameOrigin = __webpack_require__(26);
-var createError = __webpack_require__(19);
+var utils = __webpack_require__(8);
+var settle = __webpack_require__(19);
+var cookies = __webpack_require__(22);
+var buildURL = __webpack_require__(11);
+var buildFullPath = __webpack_require__(23);
+var parseHeaders = __webpack_require__(26);
+var isURLSameOrigin = __webpack_require__(27);
+var createError = __webpack_require__(20);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1632,13 +1646,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var createError = __webpack_require__(19);
+var createError = __webpack_require__(20);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -1664,13 +1678,13 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(20);
+var enhanceError = __webpack_require__(21);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -1689,7 +1703,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ ((module) => {
 
 "use strict";
@@ -1738,13 +1752,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1798,14 +1812,14 @@ module.exports = (
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(23);
-var combineURLs = __webpack_require__(24);
+var isAbsoluteURL = __webpack_require__(24);
+var combineURLs = __webpack_require__(25);
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -1825,7 +1839,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ ((module) => {
 
 "use strict";
@@ -1846,7 +1860,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ ((module) => {
 
 "use strict";
@@ -1867,13 +1881,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -1927,13 +1941,13 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -2002,25 +2016,25 @@ module.exports = (
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
-var settle = __webpack_require__(18);
-var buildFullPath = __webpack_require__(22);
-var buildURL = __webpack_require__(10);
-var http = __webpack_require__(28);
-var https = __webpack_require__(29);
-var httpFollow = __webpack_require__(30).http;
-var httpsFollow = __webpack_require__(30).https;
-var url = __webpack_require__(31);
-var zlib = __webpack_require__(45);
-var pkg = __webpack_require__(46);
-var createError = __webpack_require__(19);
-var enhanceError = __webpack_require__(20);
+var utils = __webpack_require__(8);
+var settle = __webpack_require__(19);
+var buildFullPath = __webpack_require__(23);
+var buildURL = __webpack_require__(11);
+var http = __webpack_require__(29);
+var https = __webpack_require__(30);
+var httpFollow = __webpack_require__(31).http;
+var httpsFollow = __webpack_require__(31).https;
+var url = __webpack_require__(32);
+var zlib = __webpack_require__(46);
+var pkg = __webpack_require__(47);
+var createError = __webpack_require__(20);
+var enhanceError = __webpack_require__(21);
 
 var isHttps = /https:?/;
 
@@ -2312,30 +2326,30 @@ module.exports = function httpAdapter(config) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("http");;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("https");;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var url = __webpack_require__(31);
+var url = __webpack_require__(32);
 var URL = url.URL;
-var http = __webpack_require__(28);
-var https = __webpack_require__(29);
-var Writable = __webpack_require__(32).Writable;
-var assert = __webpack_require__(33);
-var debug = __webpack_require__(34);
+var http = __webpack_require__(29);
+var https = __webpack_require__(30);
+var Writable = __webpack_require__(33).Writable;
+var assert = __webpack_require__(34);
+var debug = __webpack_require__(35);
 
 // Create handlers that pass events from native requests
 var eventHandlers = Object.create(null);
@@ -2857,28 +2871,28 @@ module.exports.wrap = wrap;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("url");;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("stream");;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("assert");;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var debug;
@@ -2887,7 +2901,7 @@ module.exports = function () {
   if (!debug) {
     try {
       /* eslint global-require: off */
-      debug = __webpack_require__(35)("follow-redirects");
+      debug = __webpack_require__(36)("follow-redirects");
     }
     catch (error) {
       debug = function () { /* */ };
@@ -2898,7 +2912,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /**
@@ -2907,14 +2921,14 @@ module.exports = function () {
  */
 
 if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
-	module.exports = __webpack_require__(36);
+	module.exports = __webpack_require__(37);
 } else {
-	module.exports = __webpack_require__(39);
+	module.exports = __webpack_require__(40);
 }
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ ((module, exports, __webpack_require__) => {
 
 /* eslint-env browser */
@@ -3171,7 +3185,7 @@ function localstorage() {
 	}
 }
 
-module.exports = __webpack_require__(37)(exports);
+module.exports = __webpack_require__(38)(exports);
 
 const {formatters} = module.exports;
 
@@ -3189,7 +3203,7 @@ formatters.j = function (v) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
@@ -3205,7 +3219,7 @@ function setup(env) {
 	createDebug.disable = disable;
 	createDebug.enable = enable;
 	createDebug.enabled = enabled;
-	createDebug.humanize = __webpack_require__(38);
+	createDebug.humanize = __webpack_require__(39);
 	createDebug.destroy = destroy;
 
 	Object.keys(env).forEach(key => {
@@ -3456,7 +3470,7 @@ module.exports = setup;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ ((module) => {
 
 /**
@@ -3624,15 +3638,15 @@ function plural(ms, msAbs, n, name) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ ((module, exports, __webpack_require__) => {
 
 /**
  * Module dependencies.
  */
 
-const tty = __webpack_require__(40);
-const util = __webpack_require__(41);
+const tty = __webpack_require__(41);
+const util = __webpack_require__(42);
 
 /**
  * This is the Node.js implementation of `debug()`.
@@ -3658,7 +3672,7 @@ exports.colors = [6, 2, 3, 4, 5, 1];
 try {
 	// Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
 	// eslint-disable-next-line import/no-extraneous-dependencies
-	const supportsColor = __webpack_require__(42);
+	const supportsColor = __webpack_require__(43);
 
 	if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
 		exports.colors = [
@@ -3866,7 +3880,7 @@ function init(debug) {
 	}
 }
 
-module.exports = __webpack_require__(37)(exports);
+module.exports = __webpack_require__(38)(exports);
 
 const {formatters} = module.exports;
 
@@ -3893,27 +3907,27 @@ formatters.O = function (v) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("tty");;
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("util");;
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
-const os = __webpack_require__(43);
-const hasFlag = __webpack_require__(44);
+const os = __webpack_require__(44);
+const hasFlag = __webpack_require__(45);
 
 const env = process.env;
 
@@ -4045,14 +4059,14 @@ module.exports = {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("os");;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ ((module) => {
 
 "use strict";
@@ -4067,27 +4081,27 @@ module.exports = (flag, argv) => {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("zlib");;
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ ((module) => {
 
 "use strict";
 module.exports = JSON.parse('{"_from":"axios@^0.21.1","_id":"axios@0.21.1","_inBundle":false,"_integrity":"sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21.1","name":"axios","escapedName":"axios","rawSpec":"^0.21.1","saveSpec":null,"fetchSpec":"^0.21.1"},"_requiredBy":["/github-api"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.1.tgz","_shasum":"22563481962f4d6bde9a76d516ef0e5d3c09b2b8","_spec":"axios@^0.21.1","_where":"C:\\\\Users\\\\krish\\\\Desktop\\\\SE_TOOL\\\\github-documenter\\\\node_modules\\\\github-api","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.10.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"bundlesize":"^0.17.0","coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.0.2","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^20.1.0","grunt-karma":"^2.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^1.0.18","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^1.3.0","karma-chrome-launcher":"^2.2.0","karma-coverage":"^1.1.1","karma-firefox-launcher":"^1.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-opera-launcher":"^1.0.0","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^1.2.0","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.7","karma-webpack":"^1.7.0","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^5.2.0","sinon":"^4.5.0","typescript":"^2.8.1","url-search-params":"^0.10.0","webpack":"^1.13.1","webpack-dev-server":"^1.14.1"},"homepage":"https://github.com/axios/axios","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test && bundlesize","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.1"}');
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var utils = __webpack_require__(7);
+var utils = __webpack_require__(8);
 
 /**
  * Config-specific merge-function which creates a new config-object
@@ -4175,7 +4189,7 @@ module.exports = function mergeConfig(config1, config2) {
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ ((module) => {
 
 "use strict";
@@ -4201,13 +4215,13 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(48);
+var Cancel = __webpack_require__(49);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -4265,7 +4279,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ ((module) => {
 
 "use strict";
@@ -4299,7 +4313,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ ((module) => {
 
 "use strict";
@@ -4315,13 +4329,6 @@ module.exports = function isAxiosError(payload) {
   return (typeof payload === 'object') && (payload.isAxiosError === true);
 };
 
-
-/***/ }),
-/* 52 */
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs");;
 
 /***/ }),
 /* 53 */

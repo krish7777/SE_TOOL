@@ -275,6 +275,8 @@ done`, folderUri.path)
 		console.log("running")
 		const editor = vscode.window.activeTextEditor;
 		let workspaceFolders = vscode.workspace.workspaceFolders;
+
+		let folderUri = vscode.workspace.workspaceFolders[0].uri;
 		if (editor) {
 			let currentFile = editor.document.fileName;
 			if (currentFile.toLowerCase().endsWith('.js')) {
@@ -313,6 +315,12 @@ done`, folderUri.path)
 								vscode.window.showTextDocument(document, { preview: false });
 							});
 						});
+						let document = editor.document.uri.path;
+						document = document.replace(':', '')
+						runGitCommandInTerminal(`echo "/*Files Importing this file */" >> ${document}`, folderUri.path)
+						filesThatImportCurrentFile.map(function (file) {
+							runGitCommandInTerminal(`echo "/* ${file} */" >> ${document}`, folderUri.path)
+						})
 					} else {
 						// show 'no files found'
 						vscode.window.showQuickPick([{
