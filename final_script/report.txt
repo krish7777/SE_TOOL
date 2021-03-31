@@ -7,7 +7,7 @@ NamedUser(login="arpit1912")
 NamedUser(login="dinkar64")
 NamedUser(login="sam3926")
 
- Description: None
+ Description: A web application to achieve zero hunger by connecting food donors with charity organizations.
 
  Date created: 2020-10-03 20:22:26
 
@@ -30,7 +30,76 @@ NamedUser(login="sam3926")
  Closed Issues :
 2
 
-Last commit details : 
+Repository Traffic for past 14 days : 
+
+ Clones : 
+{
+  "count": 0,
+  "uniques": 0,
+
+ Views : 
+{
+  "count": 17,
+  "uniques": 2,
+
+ Top referrers sources 
+[
+  {
+    "referrer": "github.com",
+    "count": 3,
+    "uniques": 2
+  }
+]
+
+ Top Popular Content 
+[
+  {
+    "path": "/krish7777/food4all",
+    "title": "krish7777/food4all",
+    "count": 5,
+    "uniques": 2
+  },
+  {
+    "path": "/krish7777/food4all/network/dependencies",
+    "title": "Dependencies · krish7777/food4all",
+    "count": 3,
+    "uniques": 1
+  },
+  {
+    "path": "/krish7777/food4all/blob/main/server.js",
+    "title": "food4all/server.js at main · krish7777/food4all",
+    "count": 2,
+    "uniques": 1
+  },
+  {
+    "path": "/krish7777/food4all/commits/main/server.js",
+    "title": "History for server.js - krish7777/food4all",
+    "count": 1,
+    "uniques": 1
+  },
+  {
+    "path": "/krish7777/food4all/graphs/commit-activity",
+    "title": "Commit Activity · krish7777/food4all",
+    "count": 1,
+    "uniques": 1
+  },
+  {
+    "path": "/krish7777/food4all/network",
+    "title": "Network Graph · krish7777/food4all",
+    "count": 1,
+    "uniques": 1
+  },
+  {
+    "path": "/krish7777/food4all/pulse",
+    "title": "Pulse · krish7777/food4all",
+    "count": 1,
+    "uniques": 1
+  }
+]
+
+
+
+ Last commit details : 
 commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
 Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
 Date:   Mon Nov 30 14:23:10 2020 +0530
@@ -73,6 +142,15 @@ Languages :
 |            sam3926 |               1|               2|               2|                   0|                       1|             1|
 --------------------------------------------------------------------------------------------------------------------------------------
 
+ Merge Commits for the Contributors 
+    58	arpit1912
+    25	Krishnendu Sudheesh
+    13	dinkar64
+    13	krish7777
+     6	dinkar
+     4	sam3926
+     1	shreyansh
+
  No of commits on each Week Day : 
 
 	 Day - No of commits 
@@ -87,8 +165,8 @@ Languages :
 
 Community Profile of the repository: 
 {
-  "health_percentage": 16,
-  "description": null,
+  "health_percentage": 33,
+  "description": "A web application to achieve zero hunger by connecting food donors with charity organizations.",
   "documentation": null,
   "files": {
     "code_of_conduct": null,
@@ -132,3 +210,60 @@ Framework ASP.NET
 Framework Play
 Framework React
 /*Note : File contributors are mentioned in each file at eof */
+/* Krishnendu Sudheesh */
+
+	 Mon - 16
+	 Tue - 3
+	 Wed - 1
+	 Thu - 10
+	 Fri - 5
+	 Sat - 22
+	 Sun - 37/* arpit1912  */
+
+	 Mon - 12
+	 Tue - 7
+	 Wed - 3
+	 Thu - 4
+	 Fri - 2
+	 Sat - 17
+	 Sun - 18/* shreyansh  */
+
+	 Mon - 5
+	 Tue - 2
+	 Wed - 3
+	 Thu - 1
+	 Fri - 1
+	 Sat - 5
+	 Sun - 3/* dinkar  */
+
+	 Mon - 3
+	 Tue - 0
+	 Wed - 3
+	 Thu - 3
+	 Fri - 1
+	 Sat - 1
+	 Sun - 5/* dinkar64  */
+
+	 Mon - 7
+	 Tue - 1
+	 Wed - 1
+	 Thu - 0
+	 Fri - 1
+	 Sat - 2
+	 Sun - 4/* krish7777  */
+
+	 Mon - 0
+	 Tue - 0
+	 Wed - 0
+	 Thu - 0
+	 Fri - 0
+	 Sat - 0
+	 Sun - 3/* sam3926  */
+
+	 Mon - 0
+	 Tue - 0
+	 Wed - 0
+	 Thu - 0
+	 Fri - 0
+	 Sat - 0
+	 Sun - 1
