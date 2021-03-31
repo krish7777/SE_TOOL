@@ -7,7 +7,9 @@ import { posix } from 'path';
 const { exec } = require('child_process');
 import allTechnologies from "./technologies.json"
 import fs from 'fs';
+import path from "path"
 import axios from 'axios'
+const acorn = require("acorn-loose")
 
 let technologiesUsed: string[] = [];
 //let shellcode = fs.readFileSync('script.txt')
@@ -219,9 +221,128 @@ done`, folderUri.path)
 	})
 
 
+	let disposable3 = vscode.commands.registerCommand('github-documenter.findFileReference', function () {
+		if (!vscode.workspace.workspaceFolders) {
+			return vscode.window.showInformationMessage('No folder or workspace opened');
+		}
+
+		const walkSync = (dir, filelist = []) => {
+			fs.readdirSync(dir).forEach(file => {
+				function wantToWalk(file) {
+					return !['node_modules', 'bower_components', '.git'].includes(file)
+				}
+				filelist = (fs.statSync(path.join(dir, file)).isDirectory() && wantToWalk(file))
+					? walkSync(path.join(dir, file), filelist)
+					: filelist.concat(path.join(dir, file));
+			});
+			return filelist;
+		}
+
+
+
+		function getAbsPath(importPath, startingPath) {
+			if (importPath.length) {
+				let path = importPath.split('/');
+				let retPath = startingPath.split('\\');
+				retPath.pop();
+				for (let part of path) {
+					if (part.trim()) {
+						if (part === '.') {
+							// do nothing
+						} else if (part === '..') {
+							retPath.pop();
+						} else {
+							retPath.push(part);
+						}
+					}
+				}
+				return retPath.join('\\');
+			} else {
+				return importPath;
+			}
+		}
+
+		function appendDotJs(filename) {
+			return filename.toLowerCase().endsWith('.js') ? filename : filename + '.js';
+		}
+
+		function appendIndexJs(filename) {
+			return filename.toLowerCase().endsWith('.js') ? filename : filename + '\\index.js'
+		}
+
+
+
+		console.log("running")
+		const editor = vscode.window.activeTextEditor;
+		let workspaceFolders = vscode.workspace.workspaceFolders;
+		if (editor) {
+			let currentFile = editor.document.fileName;
+			if (currentFile.toLowerCase().endsWith('.js')) {
+				let workspaceFolderPaths = workspaceFolders.map(folder => folder.uri.fsPath);
+				let jsFiles = [];
+				for (const path of workspaceFolderPaths) {
+					jsFiles = jsFiles.concat(walkSync(path).filter(f => f.toLowerCase().endsWith('.js')))
+				} console.log(jsFiles);
+
+				try {
+					let filesThatImportCurrentFile = [];
+					for (const fileName of jsFiles) {
+						let parsed = acorn.parse(fs.readFileSync(fileName, 'utf8'));
+						for (const item of parsed.body) {
+							if (item.type === "ImportDeclaration") {
+								let importPath = item.source.value;
+								if (importPath.startsWith('.')) {
+									let absPath = getAbsPath(importPath, fileName);
+									if (appendDotJs(absPath).toLowerCase() === currentFile.toLowerCase() || appendIndexJs(absPath).toLowerCase() === currentFile.toLowerCase()) {
+										filesThatImportCurrentFile.push(fileName);
+									}
+								}
+							}
+						}
+					}
+					console.log(filesThatImportCurrentFile);
+
+					if (filesThatImportCurrentFile.length) {
+						// display file list
+						vscode.window.showQuickPick(filesThatImportCurrentFile.map((fn, index) => ({
+							id: index,
+							label: fn.split('\\').pop(),
+							description: fn
+						}))).then(item => {
+							vscode.workspace.openTextDocument(item?.description).then(document => {
+								vscode.window.showTextDocument(document, { preview: false });
+							});
+						});
+					} else {
+						// show 'no files found'
+						vscode.window.showQuickPick([{
+							label: 'No files found.'
+						}]).then(item => {
+							// do nothing
+						});
+					}
+
+				}
+				catch (err) {
+					console.log("error", err)
+				}
+
+
+
+
+
+			}
+
+
+		}
+
+	})
+
+
 
 	context.subscriptions.push(disposable);
-	context.subscriptions.push(disposable2)
+	context.subscriptions.push(disposable2);
+	context.subscriptions.push(disposable3)
 }
 
 

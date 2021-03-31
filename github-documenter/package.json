@@ -11,7 +11,8 @@
 	],
 	"activationEvents": [
 		"onCommand:github-documenter.generateReport",
-		"onCommand:github-documenter.generateDocs"
+		"onCommand:github-documenter.generateDocs",
+		"onCommand:github-documenter.findFileReference"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -23,6 +24,10 @@
 			{
 				"command": "github-documenter.generateDocs",
 				"title": "Generate Documentation for file"
+			},
+			{
+				"command": "github-documenter.findFileReference",
+				"title": "Find all references"
 			}
 		]
 	},
@@ -54,6 +59,7 @@
 		"webpack-cli": "^4.4.0"
 	},
 	"dependencies": {
+		"acorn-loose": "^8.0.2",
 		"github-api": "^3.4.0"
 	}
 }
