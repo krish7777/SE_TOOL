@@ -1,79 +1,115 @@
-Creation Date : 
+Full Name: krish7777/food4all
+
+Description: A web application to achieve zero hunger by connecting food donors with charity organizations.
+
+Date created: 2020-10-03T20:22:26Z
+
+Date of last push: 2020-11-30T08:53:33Z
+
+Contributors:
+krish7777
+arpit1912
+dinkar64
+sam3926
+
+
+Number of forks: 2
+
+Number of stars: 0
+
+Number of watchers: 0
+
+Main Language: JavaScript
+
+No of open issues: 0
+
+License: None
+
+No of open pull requests: 0
+
+No. of closed pull requests: 30
+
+All languages used:
+JavaScript:239256
+HTML:4739
+CSS:4373
+Less:3892
+
+
+Repository Domain:
+Web Application
+Stack Used:
+MERN Stack
+
 Last commit details : 
-commit b33a0b4723cb7a1fc39925c3374529b460ef5413
-Author: dinkar64 <dinkarrathi64@gmail.com>
-Date:   Tue Mar 2 09:31:42 2021 +0530
-
-    “data_extraction”
-
-Branches List : 
- * main
-  remotes/origin/HEAD -> origin/main
-  remotes/origin/main
-
-Contributors List & no of commits 
-      4	dinkar64
-     1	krish7777
-
-Each Contributor Commits and commit history 
-b33a0b4 - dinkar64, 5 hours ago : “data_extraction”
-365b1aa - dinkar64, 2 days ago : “data_extraction_script”
-57a3083 - dinkar64, 3 days ago : “python_script”
-34bc4bf - dinkar64, 8 days ago : “basic_report_script”
-5c6c1e2 - krish7777, 8 days ago : Initial commitCommands git log --oneline , git log --stat, git shortlog git log --author=<name> --no-merges
-
-Last commit details : 
-commit 01a727aa91f1073f44a725376d4d7db51bb76048
+commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
 Author: Krishnendu Sudheesh <krishnendusudheesh4@gmail.com>
-Date:   Thu Mar 4 02:43:20 2021 +0530
+Date:   Mon Nov 30 14:23:10 2020 +0530
 
-    added basic extension, table for report, slight change in files changed
+    updated production build
 
 Branches List : 
  * main
   remotes/origin/HEAD -> origin/main
+  remotes/origin/Modal1
+  remotes/origin/awards
+  remotes/origin/features
   remotes/origin/main
+  remotes/origin/notif-krish
 
-Languages : 
- {
-  "JavaScript": 239256,
-  "HTML": 4739,
-  "CSS": 4373,
-  "Less": 3892
-}
+Branches Last Commit and Committer: 
+ Mon Nov 30 14:23:10 2020 +0530  origin/HEAD         Krishnendu Sudheesh
+Mon Nov 30 14:23:10 2020 +0530  origin/main         Krishnendu Sudheesh
+Mon Nov 30 12:52:39 2020 +0530  origin/features     arpit1912
+Sun Nov 29 18:29:15 2020 +0530  origin/notif-krish  Krishnendu Sudheesh
+Wed Nov 25 15:40:27 2020 +0530  origin/awards       dinkar
+Sat Nov 21 16:51:19 2020 +0530  origin/Modal1       dinkar
 --------------------------------------------------------------------------------------------------------------------------------------
 |      User Name     |  Files Changed |   Lines Added  |  Lines Deleted | Total Lines (delta)|  Add./Del. ratio (1:n) | Commit Count |
 --------------------------------------------------------------------------------------------------------------------------------------
-|           dinkar64 |              10|             313|              20|                 293|               0.0638978|             4|
-| Krishnendu Sudheesh|              30|            3623|              13|                3610|              0.00358819|             1|
-|          krish7777 |               1|               1|               0|                   1|                       0|             1|
+| Krishnendu Sudheesh|             220|           27496|            4816|               22680|                0.175153|            94|
+|          arpit1912 |              90|            3578|            2544|                1034|                0.711012|            63|
+|          shreyansh |              28|             622|             366|                 256|                0.588424|            20|
+|             dinkar |             116|            2137|             243|                1894|                0.113711|            16|
+|           dinkar64 |              49|            3471|             292|                3179|               0.0841256|            16|
+|          krish7777 |               2|              21|               0|                  21|                       0|             3|
+|            sam3926 |               1|               2|               2|                   0|                       1|             1|
 --------------------------------------------------------------------------------------------------------------------------------------
 
-Community Profile : 
-{
-  "health_percentage": 16,
-  "description": null,
-  "documentation": null,
-  "files": {
-    "code_of_conduct": null,
-    "contributing": null,
-    "issue_template": null,
-    "pull_request_template": null,
-    "license": null,
-    "readme": {
-      "url": "https://api.github.com/repos/krish7777/food4all/contents/README.md",
-      "html_url": "https://github.com/krish7777/food4all/blob/main/README.md"
-    }
-  },
-  "updated_at": null
-}
 
-Framework : 
+No of commits on each Week Day : 
 
-Framework : 
 
-Framework : 
+Day - No of commits
 
+Mon - 43
+Tue - 13
+Wed - 11
+Thu - 18
+Fri - 10
+Sat - 47
+Sun - 71
+
+Commit seggregation : 
+
+UI 
+arpit1912
+Krishnendu Sudheesh
+shreyansh
+
+Bug 
+arpit1912
+Krishnendu Sudheesh
+shreyansh
+
+Backend 
+arpit1912
+Krishnendu Sudheesh
+
+Frontend 
+Krishnendu Sudheesh
+
+Test 
  
  Framework : 
 
@@ -91,24 +127,6 @@ Framework :
 
  
  Framework : 
-
  
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
+Deploy 
+Krishnendu Sudheesh
