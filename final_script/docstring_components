@@ -1,0 +1,32 @@
+export interface DocstringComponents {
+    FunctionName: string;
+    decorators: decorator[];
+    KeywordArguments: keywordargument[];
+    Arguments: argument[];
+    Yields: yield;
+    Returns: return;
+    code: string[];
+}
+
+export interface decorator {
+    Functionname: string;
+}
+
+export interface keywordarguments {
+    defaultvalue: string;
+    ArgumentName: string;
+    ArgumentType: string;
+}
+
+export interface arguments {
+    ArgumentName: string;
+    ArgumentType: string;
+}
+
+export interface yield {
+    Type: string;
+}
+
+export interface return {
+    ReturnType: string;
+}

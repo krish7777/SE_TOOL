@@ -1,0 +1,36 @@
+{{! Template Docstring }}
+
+<%FunctionSummary%>
+
+<%ExtendedFunctionSummary%>
+
+<%#KeywordArgumentsExist%>
+Keyword Arguments:
+<%#KeywordArguments%>
+    <%ArgumentName%> {<%ArgumentType%>} -- <%Description%> (default: {<%&defaultvalue%>})
+<%/KeywordArguments%>
+<%/KeywordArgumentsExist%>
+
+<%#ArgumentsExist%>
+Arguments:
+<%#Arguments%>
+    <%ArgumentName%> {<%ArgumentType%>} -- <%Description%>
+<%Arguments%>
+<%/ArgumentsExist%>
+
+Temporary variables (VarName,Type) : <%Description%>
+
+<%#YieldStatementsExist%>
+Yields:
+<%#Yields%>
+    <%Type%> -- <%Description%>
+<%/Yields%>
+<%/YieldStatementsExist%>
+
+<%#ReturnStatementExist%>
+Return:
+<%#Returns%>
+    <%ReturnType%> -- <%Description%>
+<%/Returns%>
+<%/ReturnStatementExis%>
+
