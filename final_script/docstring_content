@@ -5,7 +5,7 @@ import {
     arguments,
     yield,
     return,
-} from "../docstring_parts";
+} from "docstring_components";
 
 export class DocstringData {
     public FunctionName: string;
