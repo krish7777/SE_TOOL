@@ -12,7 +12,8 @@
 	"activationEvents": [
 		"onCommand:github-documenter.generateReport",
 		"onCommand:github-documenter.generateDocs",
-		"onCommand:github-documenter.findFileReference"
+		"onCommand:github-documenter.findFileReference",
+		"onCommand:github-documenter.generateDocstring"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -28,6 +29,10 @@
 			{
 				"command": "github-documenter.findFileReference",
 				"title": "Find all references"
+			},
+			{
+				"command": "github-documenter.generateDocstring",
+				"title": "Generate Docstring for the function"
 			}
 		]
 	},

@@ -4,7 +4,7 @@
 import * as vscode from 'vscode';
 import { runGitCommandInTerminal } from './terminal';
 import { posix } from 'path';
-const { exec } = require('child_process');
+import { AutoDocstring } from "./docstring";
 import allTechnologies from "./technologies.json"
 import fs from 'fs';
 import path from "path"
@@ -183,6 +183,11 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 
 	});
 
+
+	/*
+	Generate Internal Documentation
+	*/
+
 	let disposable2 = vscode.commands.registerTextEditorCommand('github-documenter.generateDocs', async () => {
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
@@ -220,7 +225,9 @@ done`, folderUri.path)
 
 	})
 
-
+	/*
+		Finding file references
+	*/
 	let disposable3 = vscode.commands.registerCommand('github-documenter.findFileReference', function () {
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
@@ -346,13 +353,30 @@ done`, folderUri.path)
 
 	})
 
+	/*
+		Generating Comments for functions
+	*/
+
+	let disposable4 = vscode.commands.registerCommand('github-documenter.generateDocstring', function () {
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+
+			const autoDocstring = new AutoDocstring(editor);
+
+			try {
+				return autoDocstring.generateDocstring();
+			} catch (err) {
+			}
+		}
+
+	})
 
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(disposable2);
-	context.subscriptions.push(disposable3)
+	context.subscriptions.push(disposable3);
+	context.subscriptions.push(disposable4);
 }
-
 
 
 export async function checkFileNames(folderUri: any) {
