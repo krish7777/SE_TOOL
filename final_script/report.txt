@@ -34,68 +34,19 @@ Repository Traffic for past 14 days :
 
  Clones : 
 {
-  "count": 0,
-  "uniques": 0,
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest"
 
  Views : 
 {
-  "count": 17,
-  "uniques": 2,
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest"
 
  Top referrers sources 
-[
-  {
-    "referrer": "github.com",
-    "count": 3,
-    "uniques": 2
-  }
-]
-
- Top Popular Content 
-[
-  {
-    "path": "/krish7777/food4all",
-    "title": "krish7777/food4all",
-    "count": 5,
-    "uniques": 2
-  },
-  {
-    "path": "/krish7777/food4all/network/dependencies",
-    "title": "Dependencies · krish7777/food4all",
-    "count": 3,
-    "uniques": 1
-  },
-  {
-    "path": "/krish7777/food4all/blob/main/server.js",
-    "title": "food4all/server.js at main · krish7777/food4all",
-    "count": 2,
-    "uniques": 1
-  },
-  {
-    "path": "/krish7777/food4all/commits/main/server.js",
-    "title": "History for server.js - krish7777/food4all",
-    "count": 1,
-    "uniques": 1
-  },
-  {
-    "path": "/krish7777/food4all/graphs/commit-activity",
-    "title": "Commit Activity · krish7777/food4all",
-    "count": 1,
-    "uniques": 1
-  },
-  {
-    "path": "/krish7777/food4all/network",
-    "title": "Network Graph · krish7777/food4all",
-    "count": 1,
-    "uniques": 1
-  },
-  {
-    "path": "/krish7777/food4all/pulse",
-    "title": "Pulse · krish7777/food4all",
-    "count": 1,
-    "uniques": 1
-  }
-]
+{
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest"
+}
 
 
 
@@ -142,7 +93,7 @@ Languages :
 |            sam3926 |               1|               2|               2|                   0|                       1|             1|
 --------------------------------------------------------------------------------------------------------------------------------------
 
- Merge Commits for the Contributors 
+ Number of Merge Commits for each Contributors 
     58	arpit1912
     25	Krishnendu Sudheesh
     13	dinkar64
@@ -151,19 +102,21 @@ Languages :
      4	sam3926
      1	shreyansh
 
- No of commits on each Week Day : 
+ Number of commits on each Week Day : 
 
-	 Day - No of commits 
+		 Mon 	 Tue 	 Wed 	 Thu 	 Fri 	 Sat 	 Sun 
 
-	 Mon - 43
-	 Tue - 13
-	 Wed - 11
-	 Thu - 18
-	 Fri - 10
-	 Sat - 47
-	 Sun - 71
+	 All : 		43	13	11	18	10	47	71
 
-Community Profile of the repository: 
+Krishnendu Sudheesh	16	3	1	10	5	22	37
+arpit1912 	12	7	3	4	2	17	18
+shreyansh 	5	2	3	1	1	5	3
+dinkar 	3	0	3	3	1	1	5
+dinkar64 	7	1	1	0	1	2	4
+krish7777 	0	0	0	0	0	0	3
+sam3926 	0	0	0	0	0	0	1
+
+ Community Profile of the repository: 
 {
   "health_percentage": 33,
   "description": "A web application to achieve zero hunger by connecting food donors with charity organizations.",
@@ -183,7 +136,7 @@ Community Profile of the repository:
 }
 
 
- commit seggregation : 
+ Contributors Commits Seggregation : 
 
  UI 
 arpit1912
@@ -206,64 +159,13 @@ Krishnendu Sudheesh
 
  Deploy 
 Krishnendu Sudheesh
+
+ Repository Top Popular Content 
+{
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest"
+}
 Framework ASP.NET
 Framework Play
 Framework React
 /*Note : File contributors are mentioned in each file at eof */
-/* Krishnendu Sudheesh */
-
-	 Mon - 16
-	 Tue - 3
-	 Wed - 1
-	 Thu - 10
-	 Fri - 5
-	 Sat - 22
-	 Sun - 37/* arpit1912  */
-
-	 Mon - 12
-	 Tue - 7
-	 Wed - 3
-	 Thu - 4
-	 Fri - 2
-	 Sat - 17
-	 Sun - 18/* shreyansh  */
-
-	 Mon - 5
-	 Tue - 2
-	 Wed - 3
-	 Thu - 1
-	 Fri - 1
-	 Sat - 5
-	 Sun - 3/* dinkar  */
-
-	 Mon - 3
-	 Tue - 0
-	 Wed - 3
-	 Thu - 3
-	 Fri - 1
-	 Sat - 1
-	 Sun - 5/* dinkar64  */
-
-	 Mon - 7
-	 Tue - 1
-	 Wed - 1
-	 Thu - 0
-	 Fri - 1
-	 Sat - 2
-	 Sun - 4/* krish7777  */
-
-	 Mon - 0
-	 Tue - 0
-	 Wed - 0
-	 Thu - 0
-	 Fri - 0
-	 Sat - 0
-	 Sun - 3/* sam3926  */
-
-	 Mon - 0
-	 Tue - 0
-	 Wed - 0
-	 Thu - 0
-	 Fri - 0
-	 Sat - 0
-	 Sun - 1
