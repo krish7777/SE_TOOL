@@ -12,7 +12,6 @@ import axios from 'axios'
 const acorn = require("acorn-loose")
 
 let technologiesUsed: string[] = [];
-//let shellcode = fs.readFileSync('script.txt')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -25,16 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('github-documenter.generateReport', async () => {
+	let externalDocumentation = vscode.commands.registerCommand('github-documenter.generateExternalDocs', async () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
 		}
+		let folderUri = vscode.workspace.workspaceFolders[0].uri;
+
+
 		vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
 		let githubName = await vscode.window.showInputBox();
-		let folderUri = vscode.workspace.workspaceFolders[0].uri;
 
 		githubName && vscode.window.showInformationMessage('The detailed report will be generated in report.txt file. Please wait a few seconds :)');
 		console.log("github name - ", githubName);
@@ -76,9 +77,12 @@ export function activate(context: vscode.ExtensionContext) {
 		res = await axios.get(`https://api.github.com/repos/${githubName}/pulls?state=closed`)
 		data = res.data;
 		let closed_pull = data && data.length;
+		res = await axios.get(`https://api.github.com/repos/${githubName}/community/profile`)
+		data = res.data;
+		let health_percentage = data && data.health_percentage;
 
 
-		let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\n`;
+		let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\nHealth Percentage: ${health_percentage}\n\n`;
 		console.log("final", finalString)
 		runGitCommandInTerminal('rm report.txt', folderUri.path)
 		runGitCommandInTerminal(
@@ -163,6 +167,27 @@ done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{pr
 printf "\t$week - $counter" >> report.txt
 done
 
+echo -e "\\n----------------------------------------------------------------"  >> report.txt ;
+echo -e "|      User Name     | Mon | Tue | Wed | Thu | Fri | Sat | Sun |"  >> report.txt ;
+echo -e "----------------------------------------------------------------"  >> report.txt ;
+
+for userName in $users
+do
+printf "|%20s|" $userName >> report.txt
+for week in Mon Tue Wed Thu Fri Sat Sun
+do
+counter=0
+while read rev 
+do
+    let counter++
+done < <( git log --pretty='format:%h %cd ' --author=$userName --no-merges | grep $week |  awk '{print $1}' )
+printf "%5d|" $counter >> report.txt
+done
+echo -e "" >> report.txt ;
+done
+echo -e "----------------------------------------------------------------"  >> report.txt ;
+
+
 printf "\\n\\nCommit seggregation : \\n" >> report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
@@ -188,55 +213,16 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 	Generate Internal Documentation
 	*/
 
-	let disposable2 = vscode.commands.registerTextEditorCommand('github-documenter.generateDocs', async () => {
-		if (!vscode.workspace.workspaceFolders) {
-			return vscode.window.showInformationMessage('No folder or workspace opened');
-		}
-		console.log("running")
-		const editor = vscode.window.activeTextEditor;
-		let folderUri = vscode.workspace.workspaceFolders[0].uri;
-
-		if (editor) {
-			console.log("has editor")
-			let document = editor.document.uri.path;
-			document = document.replace(':', '')
-			vscode.window.showInformationMessage('The detailed information will be shown at the bottom of the file');
-			runGitCommandInTerminal(
-				`users=$(git shortlog -sn --no-merges -- ${document} | awk '{printf "%s %s\\n", $2, $3}')
-IFS=$'\\n'
-printf "\\n"
-echo -e "/* User name; Lines added; Lines deleted; Commit count */"  >> ${document}
-for userName in $users
-do
-time=$(git log --author="$userName" --no-merges --shortstat -- ${document})
-result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%s;%s", inserted, deleted}' -)
-countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
-if [[ \${result} != ';;;;' ]]
-then
-echo -e "/* $userName; $result; $countCommits; */"  >> ${document}
-echo -e "/* Commits made to file : */"  >> ${document}
-echo -e "/* $time */"  >> ${document}
-fi
-done`, folderUri.path)
-		}
-
-
-
-
-	})
-
-	/*
-		Finding file references
-	*/
-	let disposable3 = vscode.commands.registerCommand('github-documenter.findFileReference', function () {
+	let internalDocumentation = vscode.commands.registerTextEditorCommand('github-documenter.generateInternalDocs', async () => {
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
 		}
 
-		const walkSync = (dir, filelist = []) => {
+
+		const walkSync = (dir: string, filelist = []) => {
 			fs.readdirSync(dir).forEach(file => {
-				function wantToWalk(file) {
-					return !['node_modules', 'bower_components', '.git'].includes(file)
+				function wantToWalk(file: string) {
+					return !['node_modules', '.vscode', '.git'].includes(file)
 				}
 				filelist = (fs.statSync(path.join(dir, file)).isDirectory() && wantToWalk(file))
 					? walkSync(path.join(dir, file), filelist)
@@ -247,7 +233,7 @@ done`, folderUri.path)
 
 
 
-		function getAbsPath(importPath, startingPath) {
+		function getAbsPath(importPath: string, startingPath: string) {
 			if (importPath.length) {
 				let path = importPath.split('/');
 				let retPath = startingPath.split('\\');
@@ -269,28 +255,20 @@ done`, folderUri.path)
 			}
 		}
 
-		function appendDotJs(filename) {
+		function appendDotJs(filename: string) {
 			return filename.toLowerCase().endsWith('.js') ? filename : filename + '.js';
 		}
 
-		function appendIndexJs(filename) {
+		function appendIndexJs(filename: string) {
 			return filename.toLowerCase().endsWith('.js') ? filename : filename + '\\index.js'
 		}
 
-
-
-		console.log("running")
-		const editor = vscode.window.activeTextEditor;
-		let workspaceFolders = vscode.workspace.workspaceFolders;
-
-		let folderUri = vscode.workspace.workspaceFolders[0].uri;
-		if (editor) {
-			let currentFile = editor.document.fileName;
+		function findFileReference(currentFile: string, workspaceFolders: any, folderUri: any) {
 			if (currentFile.toLowerCase().endsWith('.js')) {
-				let workspaceFolderPaths = workspaceFolders.map(folder => folder.uri.fsPath);
-				let jsFiles = [];
+				let workspaceFolderPaths = workspaceFolders.map((folder: any) => folder.uri.fsPath);
+				let jsFiles: any[] = [];
 				for (const path of workspaceFolderPaths) {
-					jsFiles = jsFiles.concat(walkSync(path).filter(f => f.toLowerCase().endsWith('.js')))
+					jsFiles = jsFiles.concat(walkSync(path).filter((f: string) => f.toLowerCase().endsWith('.js')))
 				} console.log(jsFiles);
 
 				try {
@@ -312,7 +290,8 @@ done`, folderUri.path)
 					console.log(filesThatImportCurrentFile);
 
 					if (filesThatImportCurrentFile.length) {
-						// display file list
+						// display file 
+						/*
 						vscode.window.showQuickPick(filesThatImportCurrentFile.map((fn, index) => ({
 							id: index,
 							label: fn.split('\\').pop(),
@@ -322,11 +301,14 @@ done`, folderUri.path)
 								vscode.window.showTextDocument(document, { preview: false });
 							});
 						});
-						let document = editor.document.uri.path;
-						document = document.replace(':', '')
-						runGitCommandInTerminal(`echo "/*Files Importing this file */" >> ${document}`, folderUri.path)
+						*/
+						let document = editor?.document.uri.path;
+						document = document?.replace(':', '')
+						runGitCommandInTerminal(`echo -e "\\n/*---------------------FILES IMPORTING THIS FILE---------------------*/\\n" >> ${document}`, folderUri.path)
 						filesThatImportCurrentFile.map(function (file) {
-							runGitCommandInTerminal(`echo "/* ${file} */" >> ${document}`, folderUri.path)
+							file = file.replaceAll('\\', '\/')
+							runGitCommandInTerminal(`echo -e "/* ${file} */" >> ${document} && echo -e "\\n/*-------------------------------------------------------------------*/" >> ${document}
+							`, folderUri.path)
 						})
 					} else {
 						// show 'no files found'
@@ -341,23 +323,51 @@ done`, folderUri.path)
 				catch (err) {
 					console.log("error", err)
 				}
-
-
-
-
-
 			}
-
-
 		}
 
+		const editor = vscode.window.activeTextEditor;
+		let folderUri = vscode.workspace.workspaceFolders[0].uri;
+
+		if (editor) {
+			let workspaceFolders = vscode.workspace.workspaceFolders;
+			let currentFile = editor.document.fileName;
+			findFileReference(currentFile, workspaceFolders, currentFile);
+			let document = editor.document.uri.path;
+			document = document.replace(':', '')
+			vscode.window.showInformationMessage('The detailed information will be shown at the bottom of the file');
+			runGitCommandInTerminal(
+				`users=$(git shortlog -sn --no-merges -- ${document} | awk '{printf "%s %s\\n", $2, $3}')
+IFS=$'\\n'
+echo -e "" >> ${document}
+echo -e "/*------------------------CONTRIBUTION SUMMARY-----------------------*/" >> ${document}
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+echo -e "/*|      User Name     | Lines Added | Lines Deleted | Commit Count |*/" >> ${document} ;
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+allCommits=$(git log --no-merges --shortstat -- ${document})
+for userName in $users
+do
+result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%13s|%15s", inserted, deleted}' -)
+countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
+if [[ \${result} != ';;;;' ]]
+then
+printf "/*|%20s|%s|%14s|*/\\n" $userName $result $countCommits >> ${document}
+fi
+done
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+echo -e "\\n" >> ${document}
+echo -e "/*---------------DETAILED COMMIT HISTORY OF THE FILE-----------------*/"  >> ${document}
+echo -e "\\n" >> ${document}
+echo -e "/*\\n$allCommits \\n*/"  >> ${document}
+`, folderUri.path)
+		}
 	})
 
 	/*
 		Generating Comments for functions
 	*/
 
-	let disposable4 = vscode.commands.registerCommand('github-documenter.generateDocstring', function () {
+	let commentGenerator = vscode.commands.registerCommand('github-documenter.generateDocstring', function () {
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
 
@@ -372,10 +382,9 @@ done`, folderUri.path)
 	})
 
 
-	context.subscriptions.push(disposable);
-	context.subscriptions.push(disposable2);
-	context.subscriptions.push(disposable3);
-	context.subscriptions.push(disposable4);
+	context.subscriptions.push(externalDocumentation);
+	context.subscriptions.push(internalDocumentation);
+	context.subscriptions.push(commentGenerator);
 }
 
 

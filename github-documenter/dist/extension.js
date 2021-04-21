@@ -44,13 +44,11 @@ const vscode = __importStar(__webpack_require__(1));
 const terminal_1 = __webpack_require__(2);
 const path_1 = __webpack_require__(3);
 const docstring_1 = __webpack_require__(4);
-const { exec } = __webpack_require__(52);
-const fs_1 = __importDefault(__webpack_require__(53));
+const fs_1 = __importDefault(__webpack_require__(52));
 const path_2 = __importDefault(__webpack_require__(3));
 const axios_1 = __importDefault(__webpack_require__(5));
-const acorn = __webpack_require__(54);
+const acorn = __webpack_require__(53);
 let technologiesUsed = [];
-//let shellcode = fs.readFileSync('script.txt')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
@@ -61,16 +59,16 @@ function activate(context) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('github-documenter.generateReport', () => __awaiter(this, void 0, void 0, function* () {
+    let externalDocumentation = vscode.commands.registerCommand('github-documenter.generateExternalDocs', () => __awaiter(this, void 0, void 0, function* () {
         // The code you place here will be executed every time your command is executed
         var _a;
         // Display a message box to the user
         if (!vscode.workspace.workspaceFolders) {
             return vscode.window.showInformationMessage('No folder or workspace opened');
         }
+        let folderUri = vscode.workspace.workspaceFolders[0].uri;
         vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
         let githubName = yield vscode.window.showInputBox();
-        let folderUri = vscode.workspace.workspaceFolders[0].uri;
         githubName && vscode.window.showInformationMessage('The detailed report will be generated in report.txt file. Please wait a few seconds :)');
         console.log("github name - ", githubName);
         let res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}`);
@@ -107,7 +105,10 @@ function activate(context) {
         res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}/pulls?state=closed`);
         data = res.data;
         let closed_pull = data && data.length;
-        let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\n`;
+        res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}/community/profile`);
+        data = res.data;
+        let health_percentage = data && data.health_percentage;
+        let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\nHealth Percentage: ${health_percentage}\n\n`;
         console.log("final", finalString);
         terminal_1.runGitCommandInTerminal('rm report.txt', folderUri.path);
         terminal_1.runGitCommandInTerminal(`printf "${finalString}" >> report.txt`, folderUri.path);
@@ -177,6 +178,27 @@ done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{pr
 printf "\t$week - $counter" >> report.txt
 done
 
+echo -e "\\n----------------------------------------------------------------"  >> report.txt ;
+echo -e "|      User Name     | Mon | Tue | Wed | Thu | Fri | Sat | Sun |"  >> report.txt ;
+echo -e "----------------------------------------------------------------"  >> report.txt ;
+
+for userName in $users
+do
+printf "|%20s|" $userName >> report.txt
+for week in Mon Tue Wed Thu Fri Sat Sun
+do
+counter=0
+while read rev 
+do
+    let counter++
+done < <( git log --pretty='format:%h %cd ' --author=$userName --no-merges | grep $week |  awk '{print $1}' )
+printf "%5d|" $counter >> report.txt
+done
+echo -e "" >> report.txt ;
+done
+echo -e "----------------------------------------------------------------"  >> report.txt ;
+
+
 printf "\\n\\nCommit seggregation : \\n" >> report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
@@ -192,44 +214,17 @@ test=$(git log --pretty="%an" -i --grep="Test" --no-merges | sort -u)
 deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 			`, folderUri.path);
     }));
-    let disposable2 = vscode.commands.registerTextEditorCommand('github-documenter.generateDocs', () => __awaiter(this, void 0, void 0, function* () {
-        if (!vscode.workspace.workspaceFolders) {
-            return vscode.window.showInformationMessage('No folder or workspace opened');
-        }
-        console.log("running");
-        const editor = vscode.window.activeTextEditor;
-        let folderUri = vscode.workspace.workspaceFolders[0].uri;
-        if (editor) {
-            console.log("has editor");
-            let document = editor.document.uri.path;
-            document = document.replace(':', '');
-            vscode.window.showInformationMessage('The detailed information will be shown at the bottom of the file');
-            terminal_1.runGitCommandInTerminal(`users=$(git shortlog -sn --no-merges -- ${document} | awk '{printf "%s %s\\n", $2, $3}')
-IFS=$'\\n'
-printf "\\n"
-echo -e "/* User name; Lines added; Lines deleted; Commit count */"  >> ${document}
-for userName in $users
-do
-time=$(git log --author="$userName" --no-merges --shortstat -- ${document})
-result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%s;%s", inserted, deleted}' -)
-countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
-if [[ \${result} != ';;;;' ]]
-then
-echo -e "/* $userName; $result; $countCommits; */"  >> ${document}
-echo -e "/* Commits made to file : */"  >> ${document}
-echo -e "/* $time */"  >> ${document}
-fi
-done`, folderUri.path);
-        }
-    }));
-    let disposable3 = vscode.commands.registerCommand('github-documenter.findFileReference', function () {
+    /*
+    Generate Internal Documentation
+    */
+    let internalDocumentation = vscode.commands.registerTextEditorCommand('github-documenter.generateInternalDocs', () => __awaiter(this, void 0, void 0, function* () {
         if (!vscode.workspace.workspaceFolders) {
             return vscode.window.showInformationMessage('No folder or workspace opened');
         }
         const walkSync = (dir, filelist = []) => {
             fs_1.default.readdirSync(dir).forEach(file => {
                 function wantToWalk(file) {
-                    return !['node_modules', 'bower_components', '.git'].includes(file);
+                    return !['node_modules', '.vscode', '.git'].includes(file);
                 }
                 filelist = (fs_1.default.statSync(path_2.default.join(dir, file)).isDirectory() && wantToWalk(file))
                     ? walkSync(path_2.default.join(dir, file), filelist)
@@ -267,17 +262,12 @@ done`, folderUri.path);
         function appendIndexJs(filename) {
             return filename.toLowerCase().endsWith('.js') ? filename : filename + '\\index.js';
         }
-        console.log("running");
-        const editor = vscode.window.activeTextEditor;
-        let workspaceFolders = vscode.workspace.workspaceFolders;
-        let folderUri = vscode.workspace.workspaceFolders[0].uri;
-        if (editor) {
-            let currentFile = editor.document.fileName;
+        function findFileReference(currentFile, workspaceFolders, folderUri) {
             if (currentFile.toLowerCase().endsWith('.js')) {
-                let workspaceFolderPaths = workspaceFolders.map(folder => folder.uri.fsPath);
+                let workspaceFolderPaths = workspaceFolders.map((folder) => folder.uri.fsPath);
                 let jsFiles = [];
                 for (const path of workspaceFolderPaths) {
-                    jsFiles = jsFiles.concat(walkSync(path).filter(f => f.toLowerCase().endsWith('.js')));
+                    jsFiles = jsFiles.concat(walkSync(path).filter((f) => f.toLowerCase().endsWith('.js')));
                 }
                 console.log(jsFiles);
                 try {
@@ -298,21 +288,25 @@ done`, folderUri.path);
                     }
                     console.log(filesThatImportCurrentFile);
                     if (filesThatImportCurrentFile.length) {
-                        // display file list
+                        // display file 
+                        /*
                         vscode.window.showQuickPick(filesThatImportCurrentFile.map((fn, index) => ({
                             id: index,
                             label: fn.split('\\').pop(),
                             description: fn
                         }))).then(item => {
-                            vscode.workspace.openTextDocument(item === null || item === void 0 ? void 0 : item.description).then(document => {
+                            vscode.workspace.openTextDocument(item?.description).then(document => {
                                 vscode.window.showTextDocument(document, { preview: false });
                             });
                         });
-                        let document = editor.document.uri.path;
-                        document = document.replace(':', '');
-                        terminal_1.runGitCommandInTerminal(`echo "/*Files Importing this file */" >> ${document}`, folderUri.path);
+                        */
+                        let document = editor === null || editor === void 0 ? void 0 : editor.document.uri.path;
+                        document = document === null || document === void 0 ? void 0 : document.replace(':', '');
+                        terminal_1.runGitCommandInTerminal(`echo -e "\\n/*---------------------FILES IMPORTING THIS FILE---------------------*/\\n" >> ${document}`, folderUri.path);
                         filesThatImportCurrentFile.map(function (file) {
-                            terminal_1.runGitCommandInTerminal(`echo "/* ${file} */" >> ${document}`, folderUri.path);
+                            file = file.replaceAll('\\', '\/');
+                            terminal_1.runGitCommandInTerminal(`echo -e "/* ${file} */" >> ${document} && echo -e "\\n/*-------------------------------------------------------------------*/" >> ${document}
+							`, folderUri.path);
                         });
                     }
                     else {
@@ -329,8 +323,44 @@ done`, folderUri.path);
                 }
             }
         }
-    });
-    let disposable4 = vscode.commands.registerCommand('github-documenter.generateDocstring', function () {
+        const editor = vscode.window.activeTextEditor;
+        let folderUri = vscode.workspace.workspaceFolders[0].uri;
+        if (editor) {
+            let workspaceFolders = vscode.workspace.workspaceFolders;
+            let currentFile = editor.document.fileName;
+            findFileReference(currentFile, workspaceFolders, currentFile);
+            let document = editor.document.uri.path;
+            document = document.replace(':', '');
+            vscode.window.showInformationMessage('The detailed information will be shown at the bottom of the file');
+            terminal_1.runGitCommandInTerminal(`users=$(git shortlog -sn --no-merges -- ${document} | awk '{printf "%s %s\\n", $2, $3}')
+IFS=$'\\n'
+echo -e "" >> ${document}
+echo -e "/*------------------------CONTRIBUTION SUMMARY-----------------------*/" >> ${document}
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+echo -e "/*|      User Name     | Lines Added | Lines Deleted | Commit Count |*/" >> ${document} ;
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+allCommits=$(git log --no-merges --shortstat -- ${document})
+for userName in $users
+do
+result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%13s|%15s", inserted, deleted}' -)
+countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
+if [[ \${result} != ';;;;' ]]
+then
+printf "/*|%20s|%s|%14s|*/\\n" $userName $result $countCommits >> ${document}
+fi
+done
+echo -e "/*-------------------------------------------------------------------*/" >> ${document} ;
+echo -e "\\n" >> ${document}
+echo -e "/*---------------DETAILED COMMIT HISTORY OF THE FILE-----------------*/"  >> ${document}
+echo -e "\\n" >> ${document}
+echo -e "/*\\n$allCommits \\n*/"  >> ${document}
+`, folderUri.path);
+        }
+    }));
+    /*
+        Generating Comments for functions
+    */
+    let commentGenerator = vscode.commands.registerCommand('github-documenter.generateDocstring', function () {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
             const autoDocstring = new docstring_1.AutoDocstring(editor);
@@ -338,25 +368,14 @@ done`, folderUri.path);
                 return autoDocstring.generateDocstring();
             }
             catch (err) {
-                //logError(err + "\n\t" + getStackTrace(err))
             }
         }
     });
-    context.subscriptions.push(disposable);
-    context.subscriptions.push(disposable2);
-    context.subscriptions.push(disposable3);
-    context.subscriptions.push(disposable4);
+    context.subscriptions.push(externalDocumentation);
+    context.subscriptions.push(internalDocumentation);
+    context.subscriptions.push(commentGenerator);
 }
 exports.activate = activate;
-function validEnterActivation(document, position) {
-    const docString = document.getText();
-    const quoteStyle = "\"\"\"";
-    return true;
-    // return (
-    // 	validDocstringPrefix(docString, position.line, position.character, quoteStyle) &&
-    // 	!docstringIsClosed(docString, position.line, position.character, quoteStyle)
-    // );
-}
 function checkFileNames(folderUri) {
     return __awaiter(this, void 0, void 0, function* () {
         for (const [name, type] of yield vscode.workspace.fs.readDirectory(folderUri)) {
@@ -579,7 +598,7 @@ class AutoDocstring {
         const sentences = document.getText(selection);
         const insertPosition = selection.start.with(undefined, 0);
         if (sentences.length > 0) {
-            const insertSnippet = "\tHello docstring is being processed. Please wait\n";
+            const insertSnippet = "\t#The docstring is being processed!. Please wait\n";
             const snippetRange = new vscode.Range(insertPosition.line, 0, insertPosition.line + 1, 0);
             const success = this.editor.insertSnippet(new vscode.SnippetString(insertSnippet), insertPosition);
             console.log("selection", sentences);
@@ -588,18 +607,18 @@ class AutoDocstring {
                 axios.post("http://127.0.0.1:5000/summary", {
                     code: sentences
                 })
-                    .then(res => {
+                    .then((res) => {
                     // const summary = res.data.message;
                     const response = res.data;
-                    if (response && response.length) {
-                        let summary = response[0].summary_text;
+                    if (response && response["message"] && response["message"].length) {
+                        let summary = response["message"][0];
                         console.log(summary);
                         this.editor.edit(editBuilder => {
                             editBuilder.replace(snippetRange, "#" + summary + "\n");
                         });
                     }
                 })
-                    .catch(err => {
+                    .catch((err) => {
                     console.log(err);
                 });
             });
@@ -4420,21 +4439,14 @@ module.exports = function isAxiosError(payload) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("child_process");;
-
-/***/ }),
-/* 53 */
-/***/ ((module) => {
-
-"use strict";
 module.exports = require("fs");;
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(55)) :
+   true ? factory(exports, __webpack_require__(54)) :
   0;
 }(this, (function (exports, acorn) { 'use strict';
 
@@ -5863,7 +5875,7 @@ module.exports = require("fs");;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(__unused_webpack_module, exports) {
 
 (function (global, factory) {

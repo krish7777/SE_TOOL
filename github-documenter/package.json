@@ -10,29 +10,24 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:github-documenter.generateReport",
-		"onCommand:github-documenter.generateDocs",
-		"onCommand:github-documenter.findFileReference",
+		"onCommand:github-documenter.generateExternalDocs",
+		"onCommand:github-documenter.generateInternalDocs",
 		"onCommand:github-documenter.generateDocstring"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "github-documenter.generateReport",
-				"title": "Generate Report"
+				"command": "github-documenter.generateExternalDocs",
+				"title": "Github Documenter: Generate Report for repo"
 			},
 			{
-				"command": "github-documenter.generateDocs",
-				"title": "Generate Documentation for file"
-			},
-			{
-				"command": "github-documenter.findFileReference",
-				"title": "Find all references"
+				"command": "github-documenter.generateInternalDocs",
+				"title": "Github Documenter: Generate internal docs for file"
 			},
 			{
 				"command": "github-documenter.generateDocstring",
-				"title": "Generate Docstring for the function"
+				"title": "Github Documenter: Generate docstring for the function"
 			}
 		]
 	},
