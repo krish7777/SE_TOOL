@@ -1,12 +1,11 @@
-Full Name: krish7777/food4all
+Full Name of repo: krish7777/food4all
 
 Description: A web application to achieve zero hunger by connecting food donors with charity organizations.
+Creation date of repo: 2020-10-03T20:22:26Z
 
-Date created: 2020-10-03T20:22:26Z
+Date of last push to repo: 2020-11-30T08:53:33Z
 
-Date of last push: 2020-11-30T08:53:33Z
-
-Contributors:
+Contributors to the repo:
 krish7777
 arpit1912
 dinkar64
@@ -19,7 +18,7 @@ Number of stars: 0
 
 Number of watchers: 0
 
-Main Language: JavaScript
+Main Language used: JavaScript
 
 No of open issues: 0
 
@@ -35,11 +34,10 @@ HTML:4739
 CSS:4373
 Less:3892
 
+Health Percentage: 33
 
-Repository Domain:
-Web Application
-Stack Used:
-MERN Stack
+The domain of the repository is: Web Application 
+The Web Stack used in the repository is : MERN Stack
 
 Last commit details : 
 commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
@@ -90,7 +88,22 @@ Fri - 10
 Sat - 47
 Sun - 71
 
-Commit seggregation : 
+Commits on each week day of all contributors : 
+
+----------------------------------------------------------------
+|      User Name     | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+----------------------------------------------------------------
+| Krishnendu Sudheesh|   16|    3|    1|   10|    5|   22|   37|
+|          arpit1912 |   12|    7|    3|    4|    2|   17|   18|
+|          shreyansh |    5|    2|    3|    1|    1|    5|    3|
+|             dinkar |    3|    0|    3|    3|    1|    1|    5|
+|           dinkar64 |    7|    1|    1|    0|    1|    2|    4|
+|          krish7777 |    0|    0|    0|    0|    0|    0|    3|
+|            sam3926 |    0|    0|    0|    0|    0|    0|    1|
+----------------------------------------------------------------
+
+
+After analysing the repo the following roles have been assigned to the contributors : 
 
 UI 
 arpit1912
@@ -110,35 +123,6 @@ Frontend
 Krishnendu Sudheesh
 
 Test 
- 
- Framework : 
 
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
- 
 Deploy 
 Krishnendu Sudheesh
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 
-
- 
- Framework : 

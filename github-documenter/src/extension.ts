@@ -116,11 +116,11 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		if (domain) {
-			runGitCommandInTerminal(`echo -e "The ddomain pf the repository is: ${domain} \\n" >> report.txtt`, folderUri.path)
+			runGitCommandInTerminal(`echo -e "The domain of the repository is: ${domain} " >> report.txt`, folderUri.path)
 		}
 
 		if (stackUsed) {
-			runGitCommandInTerminal(`echo "The Web Stack used in the repository is : ${stackUsed}\\n" >> report.txt`, folderUri.path)
+			runGitCommandInTerminal(`echo -e "The Web Stack used in the repository is : ${stackUsed}" >> report.txt`, folderUri.path)
 		}
 
 		//Extracting all the git-related information through terminal

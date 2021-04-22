@@ -133,10 +133,10 @@ function activate(context) {
             domain = "Web Application";
         }
         if (domain) {
-            terminal_1.runGitCommandInTerminal(`echo -e "The ddomain pf the repository is: ${domain} \\n" >> report.txtt`, folderUri.path);
+            terminal_1.runGitCommandInTerminal(`echo -e "The domain of the repository is: ${domain} " >> report.txt`, folderUri.path);
         }
         if (stackUsed) {
-            terminal_1.runGitCommandInTerminal(`echo "The Web Stack used in the repository is : ${stackUsed}\\n" >> report.txt`, folderUri.path);
+            terminal_1.runGitCommandInTerminal(`echo -e "The Web Stack used in the repository is : ${stackUsed}" >> report.txt`, folderUri.path);
         }
         //Extracting all the git-related information through terminal
         terminal_1.runGitCommandInTerminal(`printf "\\nLast commit details : \\n" >> report.txt && git log -1  >> report.txt

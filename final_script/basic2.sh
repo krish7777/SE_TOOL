@@ -1,21 +1,9 @@
-cd food4all
-
-printf "\nRepository Traffic for past 14 days : \n" >> ../report.txt
-printf "\n Clones : \n" >> ../report.txt
-curl -H "Authorization: token 94a8cb82ce21b7747b37e12bed408f203cd705c2" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/krish7777/food4all/traffic/clones | head -n 3 >> ../report.txt
-printf "\n Views : \n" >> ../report.txt
-curl -H "Authorization: token 94a8cb82ce21b7747b37e12bed408f203cd705c2" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/krish7777/food4all/traffic/views | head -n 3 >> ../report.txt
-printf "\n Top referrers sources \n" >> ../report.txt
-curl -H "Authorization: token 94a8cb82ce21b7747b37e12bed408f203cd705c2" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/krish7777/food4all/traffic/popular/referrers >> ../report.txt
-
 printf "\n\n\n Last commit details : \n" >> ../report.txt
 git log -1  >> ../report.txt
 printf "\nBranches List : \n " >> ../report.txt
 git branch -a >> ../report.txt
 printf "\nBranches Last Commit and Committer: \n " >> ../report.txt
 git for-each-ref --sort='-committerdate:iso8601' --format='%(committerdate:default)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t >> ../report.txt
-printf "\nLanguages : \n " >> ../report.txt
-curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/languages  >> ../report.txt
 
 users=$(git shortlog -sn --no-merges | awk '{printf "%s %s\n", $2, $3}')
 IFS=$'\n'
@@ -69,11 +57,6 @@ done
 
 done
 
-
-printf "\n\n Community Profile of the repository: \n" >> ../report.txt
-curl   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/repos/krish7777/food4all/community/profile  >> ../report.txt
-
-
 printf "\n\n Contributors Commits Seggregation : \n" >> ../report.txt
 
 
@@ -82,7 +65,3 @@ do
 printf "\n $i \n" >> ../report.txt
 git log --pretty="%an" -i --grep="$i" --no-merges | sort -u >> ../report.txt
 done
-
-printf "\n Repository Top Popular Content \n" >> ../report.txt
-curl -H "Authorization: token 94a8cb82ce21b7747b37e12bed408f203cd705c2" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/krish7777/food4all/traffic/popular/paths >> ../report.txt
-
