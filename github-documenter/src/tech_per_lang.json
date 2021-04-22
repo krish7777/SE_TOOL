@@ -1,0 +1,30 @@
+{
+    "javascript": [
+        "react",
+        "angular",
+        "vue",
+        "mongo",
+        "sql",
+        "psql",
+        "express",
+        "ember",
+        "react-native",
+        "antd"
+    ],
+    "python": [
+        "django",
+        "flask"
+    ],
+    "ruby": [
+        "rails"
+    ],
+    "php": [
+        "laravel"
+    ],
+    "java": [
+        "spring"
+    ],
+    "dart": [
+        "flutter"
+    ]
+}

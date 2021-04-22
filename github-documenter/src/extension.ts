@@ -1,6 +1,3 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-
 import * as vscode from 'vscode';
 import { runGitCommandInTerminal } from './terminal';
 import { posix } from 'path';
@@ -12,34 +9,26 @@ import axios from 'axios'
 const acorn = require("acorn-loose")
 
 let technologiesUsed: string[] = [];
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+
+// This method is called when thw extension is activated
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "github-documenter" is now active!');
-	//console.log(shellcode)
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
+	// External Documentation Command
 	let externalDocumentation = vscode.commands.registerCommand('github-documenter.generateExternalDocs', async () => {
-		// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
 		if (!vscode.workspace.workspaceFolders) {
 			return vscode.window.showInformationMessage('No folder or workspace opened');
 		}
+
 		let folderUri = vscode.workspace.workspaceFolders[0].uri;
 
-
+		//A pop up input box to enter the repository full name
 		vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
 		let githubName = await vscode.window.showInputBox();
 
 		githubName && vscode.window.showInformationMessage('The detailed report will be generated in report.txt file. Please wait a few seconds :)');
-		console.log("github name - ", githubName);
 
+		//Extracting all the required information from Github API
 		let res = await axios.get(`https://api.github.com/repos/${githubName}`)
 		let data = res.data;
 		console.log(data);
@@ -82,16 +71,15 @@ export function activate(context: vscode.ExtensionContext) {
 		let health_percentage = data && data.health_percentage;
 
 
-		let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\nHealth Percentage: ${health_percentage}\n\n`;
-		console.log("final", finalString)
+		let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\n`;
 		runGitCommandInTerminal('rm report.txt', folderUri.path)
 		runGitCommandInTerminal(
 			`printf "${finalString}" >> report.txt`, folderUri.path
 		)
 
 
-
-		await checkFileNames(folderUri);
+		//Analysising the technologies used in the repo and the stack and domain information
+		await checkFilesForTechnologies(folderUri);
 		console.log(technologiesUsed);
 		let stackUsed = ''
 		let domain = ''
@@ -128,14 +116,14 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		if (domain) {
-			runGitCommandInTerminal(`echo "Repository Domain:" >> report.txt && echo ${domain} >> report.txt`, folderUri.path)
+			runGitCommandInTerminal(`echo -e "The ddomain pf the repository is: ${domain} \\n" >> report.txtt`, folderUri.path)
 		}
 
 		if (stackUsed) {
-			runGitCommandInTerminal(`echo "Stack Used:" >> report.txt && echo ${stackUsed} >> report.txt`, folderUri.path)
+			runGitCommandInTerminal(`echo "The Web Stack used in the repository is : ${stackUsed}\\n" >> report.txt`, folderUri.path)
 		}
 
-
+		//Extracting all the git-related information through terminal
 		runGitCommandInTerminal(
 			`printf "\\nLast commit details : \\n" >> report.txt && git log -1  >> report.txt
 printf "\\nBranches List : \\n " >> report.txt && git branch -a >> report.txt
@@ -166,6 +154,7 @@ do
 done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{print $1}' )
 printf "\t$week - $counter" >> report.txt
 done
+printf "\n\nCommits on each week day of all contributors : \\n" >> report.txt
 
 echo -e "\\n----------------------------------------------------------------"  >> report.txt ;
 echo -e "|      User Name     | Mon | Tue | Wed | Thu | Fri | Sat | Sun |"  >> report.txt ;
@@ -188,7 +177,7 @@ done
 echo -e "----------------------------------------------------------------"  >> report.txt ;
 
 
-printf "\\n\\nCommit seggregation : \\n" >> report.txt
+printf "\\n\\nAfter analysing the repo the following roles have been assigned to the contributors : \\n" >> report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
 do
@@ -232,7 +221,7 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 		}
 
 
-
+		//Extracting the absolute path from the relative import paths
 		function getAbsPath(importPath: string, startingPath: string) {
 			if (importPath.length) {
 				let path = importPath.split('/');
@@ -263,6 +252,7 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
 			return filename.toLowerCase().endsWith('.js') ? filename : filename + '\\index.js'
 		}
 
+		//Function to find which other files import the given file
 		function findFileReference(currentFile: string, workspaceFolders: any, folderUri: any) {
 			if (currentFile.toLowerCase().endsWith('.js')) {
 				let workspaceFolderPaths = workspaceFolders.map((folder: any) => folder.uri.fsPath);
@@ -388,14 +378,13 @@ echo -e "/*\\n$allCommits \\n*/"  >> ${document}
 }
 
 
-export async function checkFileNames(folderUri: any) {
+export async function checkFilesForTechnologies(folderUri: any) {
 
 	for (const [name, type] of await vscode.workspace.fs.readDirectory(folderUri)) {
 		if (type == vscode.FileType.Directory && name != "node_modules") {
-			await checkFileNames(folderUri.with({ path: posix.join(folderUri.path, name) }))
+			await checkFilesForTechnologies(folderUri.with({ path: posix.join(folderUri.path, name) }))
 		}
 		else {
-			//console.log(name + " - " + type);
 			if (name == "package.json") {
 				//FOR JAVASCRIPT BASED REPOS
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
@@ -450,6 +439,7 @@ export async function checkFileNames(folderUri: any) {
 				}
 			}
 			else if (name == "requirements.txt") {
+				//For Python Apps
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
 				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
 				const packageText = packageBuffer.toString();
@@ -473,7 +463,7 @@ export async function checkFileNames(folderUri: any) {
 				}
 			}
 			else if (name == "composer.json") {
-				//FOR PHP Apps
+				//For PHP Apps
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
 				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
 				const packageText = packageBuffer.toString();
@@ -483,7 +473,7 @@ export async function checkFileNames(folderUri: any) {
 				}
 			}
 			else if (name == "pom.xml") {
-				//FOR Java Apps
+				//For Java Apps
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
 				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
 				const packageText = packageBuffer.toString();
@@ -493,7 +483,7 @@ export async function checkFileNames(folderUri: any) {
 				}
 			}
 			else if (name == "pubspec.yaml") {
-				//FOR Java Apps
+				//For Dart Apps
 				let packagePath = folderUri.with({ path: posix.join(folderUri.path, name) })
 				const packageBuffer = await vscode.workspace.fs.readFile(packagePath)
 				const packageText = packageBuffer.toString();
@@ -507,5 +497,5 @@ export async function checkFileNames(folderUri: any) {
 	}
 }
 
-// this method is called when your extension is deactivated
+// this method is called when the extension is deactivated
 export function deactivate() { }

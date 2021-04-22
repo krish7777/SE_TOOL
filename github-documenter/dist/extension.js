@@ -5,8 +5,6 @@
 
 "use strict";
 
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -39,7 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deactivate = exports.checkFileNames = exports.activate = void 0;
+exports.deactivate = exports.checkFilesForTechnologies = exports.activate = void 0;
 const vscode = __importStar(__webpack_require__(1));
 const terminal_1 = __webpack_require__(2);
 const path_1 = __webpack_require__(3);
@@ -49,28 +47,20 @@ const path_2 = __importDefault(__webpack_require__(3));
 const axios_1 = __importDefault(__webpack_require__(5));
 const acorn = __webpack_require__(53);
 let technologiesUsed = [];
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+// This method is called when thw extension is activated
 function activate(context) {
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "github-documenter" is now active!');
-    //console.log(shellcode)
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with registerCommand
-    // The commandId parameter must match the command field in package.json
+    // External Documentation Command
     let externalDocumentation = vscode.commands.registerCommand('github-documenter.generateExternalDocs', () => __awaiter(this, void 0, void 0, function* () {
-        // The code you place here will be executed every time your command is executed
         var _a;
-        // Display a message box to the user
         if (!vscode.workspace.workspaceFolders) {
             return vscode.window.showInformationMessage('No folder or workspace opened');
         }
         let folderUri = vscode.workspace.workspaceFolders[0].uri;
+        //A pop up input box to enter the repository full name
         vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
         let githubName = yield vscode.window.showInputBox();
         githubName && vscode.window.showInformationMessage('The detailed report will be generated in report.txt file. Please wait a few seconds :)');
-        console.log("github name - ", githubName);
+        //Extracting all the required information from Github API
         let res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}`);
         let data = res.data;
         console.log(data);
@@ -108,11 +98,11 @@ function activate(context) {
         res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}/community/profile`);
         data = res.data;
         let health_percentage = data && data.health_percentage;
-        let finalString = `Full Name: ${fullName}\n\nDescription: ${description}\n\nDate created: ${created_at}\n\nDate of last push: ${last_pushed_at}\n\nContributors:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\n\nHealth Percentage: ${health_percentage}\n\n`;
-        console.log("final", finalString);
+        let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\n`;
         terminal_1.runGitCommandInTerminal('rm report.txt', folderUri.path);
         terminal_1.runGitCommandInTerminal(`printf "${finalString}" >> report.txt`, folderUri.path);
-        yield checkFileNames(folderUri);
+        //Analysising the technologies used in the repo and the stack and domain information
+        yield checkFilesForTechnologies(folderUri);
         console.log(technologiesUsed);
         let stackUsed = '';
         let domain = '';
@@ -143,11 +133,12 @@ function activate(context) {
             domain = "Web Application";
         }
         if (domain) {
-            terminal_1.runGitCommandInTerminal(`echo "Repository Domain:" >> report.txt && echo ${domain} >> report.txt`, folderUri.path);
+            terminal_1.runGitCommandInTerminal(`echo -e "The ddomain pf the repository is: ${domain} \\n" >> report.txtt`, folderUri.path);
         }
         if (stackUsed) {
-            terminal_1.runGitCommandInTerminal(`echo "Stack Used:" >> report.txt && echo ${stackUsed} >> report.txt`, folderUri.path);
+            terminal_1.runGitCommandInTerminal(`echo "The Web Stack used in the repository is : ${stackUsed}\\n" >> report.txt`, folderUri.path);
         }
+        //Extracting all the git-related information through terminal
         terminal_1.runGitCommandInTerminal(`printf "\\nLast commit details : \\n" >> report.txt && git log -1  >> report.txt
 printf "\\nBranches List : \\n " >> report.txt && git branch -a >> report.txt
 printf "\\nBranches Last Commit and Committer: \\n " >> report.txt
@@ -177,6 +168,7 @@ do
 done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{print $1}' )
 printf "\t$week - $counter" >> report.txt
 done
+printf "\n\nCommits on each week day of all contributors : \\n" >> report.txt
 
 echo -e "\\n----------------------------------------------------------------"  >> report.txt ;
 echo -e "|      User Name     | Mon | Tue | Wed | Thu | Fri | Sat | Sun |"  >> report.txt ;
@@ -199,7 +191,7 @@ done
 echo -e "----------------------------------------------------------------"  >> report.txt ;
 
 
-printf "\\n\\nCommit seggregation : \\n" >> report.txt
+printf "\\n\\nAfter analysing the repo the following roles have been assigned to the contributors : \\n" >> report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
 do
@@ -232,6 +224,7 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
             });
             return filelist;
         };
+        //Extracting the absolute path from the relative import paths
         function getAbsPath(importPath, startingPath) {
             if (importPath.length) {
                 let path = importPath.split('/');
@@ -262,6 +255,7 @@ deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
         function appendIndexJs(filename) {
             return filename.toLowerCase().endsWith('.js') ? filename : filename + '\\index.js';
         }
+        //Function to find which other files import the given file
         function findFileReference(currentFile, workspaceFolders, folderUri) {
             if (currentFile.toLowerCase().endsWith('.js')) {
                 let workspaceFolderPaths = workspaceFolders.map((folder) => folder.uri.fsPath);
@@ -376,14 +370,13 @@ echo -e "/*\\n$allCommits \\n*/"  >> ${document}
     context.subscriptions.push(commentGenerator);
 }
 exports.activate = activate;
-function checkFileNames(folderUri) {
+function checkFilesForTechnologies(folderUri) {
     return __awaiter(this, void 0, void 0, function* () {
         for (const [name, type] of yield vscode.workspace.fs.readDirectory(folderUri)) {
             if (type == vscode.FileType.Directory && name != "node_modules") {
-                yield checkFileNames(folderUri.with({ path: path_1.posix.join(folderUri.path, name) }));
+                yield checkFilesForTechnologies(folderUri.with({ path: path_1.posix.join(folderUri.path, name) }));
             }
             else {
-                //console.log(name + " - " + type);
                 if (name == "package.json") {
                     //FOR JAVASCRIPT BASED REPOS
                     let packagePath = folderUri.with({ path: path_1.posix.join(folderUri.path, name) });
@@ -438,6 +431,7 @@ function checkFileNames(folderUri) {
                     }
                 }
                 else if (name == "requirements.txt") {
+                    //For Python Apps
                     let packagePath = folderUri.with({ path: path_1.posix.join(folderUri.path, name) });
                     const packageBuffer = yield vscode.workspace.fs.readFile(packagePath);
                     const packageText = packageBuffer.toString();
@@ -461,7 +455,7 @@ function checkFileNames(folderUri) {
                     }
                 }
                 else if (name == "composer.json") {
-                    //FOR PHP Apps
+                    //For PHP Apps
                     let packagePath = folderUri.with({ path: path_1.posix.join(folderUri.path, name) });
                     const packageBuffer = yield vscode.workspace.fs.readFile(packagePath);
                     const packageText = packageBuffer.toString();
@@ -471,7 +465,7 @@ function checkFileNames(folderUri) {
                     }
                 }
                 else if (name == "pom.xml") {
-                    //FOR Java Apps
+                    //For Java Apps
                     let packagePath = folderUri.with({ path: path_1.posix.join(folderUri.path, name) });
                     const packageBuffer = yield vscode.workspace.fs.readFile(packagePath);
                     const packageText = packageBuffer.toString();
@@ -481,7 +475,7 @@ function checkFileNames(folderUri) {
                     }
                 }
                 else if (name == "pubspec.yaml") {
-                    //FOR Java Apps
+                    //For Dart Apps
                     let packagePath = folderUri.with({ path: path_1.posix.join(folderUri.path, name) });
                     const packageBuffer = yield vscode.workspace.fs.readFile(packagePath);
                     const packageText = packageBuffer.toString();
@@ -494,8 +488,8 @@ function checkFileNames(folderUri) {
         }
     });
 }
-exports.checkFileNames = checkFileNames;
-// this method is called when your extension is deactivated
+exports.checkFilesForTechnologies = checkFilesForTechnologies;
+// this method is called when the extension is deactivated
 function deactivate() { }
 exports.deactivate = deactivate;
 
@@ -520,6 +514,7 @@ let _terminal;
 let _terminalCwd;
 let _disposable;
 const extensionTerminalName = 'Krishterm';
+/* Ensure the terminal is present otherwise create a new one */
 function ensureTerminal(cwd) {
     if (_terminal === undefined) {
         _terminal = vscode_1.window.createTerminal(extensionTerminalName);
@@ -532,18 +527,14 @@ function ensureTerminal(cwd) {
         });
         _terminalCwd = undefined;
     }
-    // if (_terminalCwd !== cwd) {
-    //     _terminal.sendText(`cd "${cwd}"`, true);
-    //     _terminalCwd = cwd;
-    // }
     return _terminal;
 }
+/* A function to spawn a hidden terminal and run the given command */
 function runGitCommandInTerminal(command, cwd) {
     const terminal = ensureTerminal(cwd);
     terminal.show(false);
     terminal.hide();
     terminal.sendText(command, true);
-    //terminal.dispose();
 }
 exports.runGitCommandInTerminal = runGitCommandInTerminal;
 
@@ -588,18 +579,19 @@ class AutoDocstring {
     constructor(editor) {
         this.editor = editor;
     }
+    /* Function to call the flask api with the code which returns the summary of the code. */
     generateDocstring() {
         if (this.editor == undefined) {
             throw new Error('Some error occured');
         }
         const selection = this.editor.selection;
         const document = this.editor.document;
-        console.log("starting line", selection.start.line);
         const sentences = document.getText(selection);
         const insertPosition = selection.start.with(undefined, 0);
         if (sentences.length > 0) {
             const insertSnippet = "\t#The docstring is being processed!. Please wait\n";
             const snippetRange = new vscode.Range(insertPosition.line, 0, insertPosition.line + 1, 0);
+            //Inserting a sample text while the original one is being generated.
             const success = this.editor.insertSnippet(new vscode.SnippetString(insertSnippet), insertPosition);
             console.log("selection", sentences);
             console.log("pos1 ", insertPosition);
@@ -608,11 +600,10 @@ class AutoDocstring {
                     code: sentences
                 })
                     .then((res) => {
-                    // const summary = res.data.message;
                     const response = res.data;
                     if (response && response["message"] && response["message"].length) {
                         let summary = response["message"][0];
-                        console.log(summary);
+                        //Inserting the generated summary above the selected function
                         this.editor.edit(editBuilder => {
                             editBuilder.replace(snippetRange, "#" + summary + "\n");
                         });
@@ -622,6 +613,7 @@ class AutoDocstring {
                     console.log(err);
                 });
             });
+            return success;
         }
         else {
             throw new Error("Please select the entire body of the function");

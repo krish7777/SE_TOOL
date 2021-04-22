@@ -7,6 +7,7 @@ let _disposable: Disposable | undefined;
 
 const extensionTerminalName = 'Krishterm';
 
+/* Ensure the terminal is present otherwise create a new one */
 function ensureTerminal(cwd: string): Terminal {
     if (_terminal === undefined) {
         _terminal = window.createTerminal(extensionTerminalName);
@@ -20,21 +21,14 @@ function ensureTerminal(cwd: string): Terminal {
 
         _terminalCwd = undefined;
     }
-
-    // if (_terminalCwd !== cwd) {
-    //     _terminal.sendText(`cd "${cwd}"`, true);
-    //     _terminalCwd = cwd;
-    // }
-
     return _terminal;
 }
 
+
+/* A function to spawn a hidden terminal and run the given command */
 export function runGitCommandInTerminal(command: string, cwd: string) {
-
-
     const terminal = ensureTerminal(cwd);
     terminal.show(false);
     terminal.hide();
     terminal.sendText(command, true);
-    //terminal.dispose();
 }

@@ -8,7 +8,7 @@ export class AutoDocstring {
     constructor(editor: vscode.TextEditor) {
         this.editor = editor;
     }
-
+    /* Function to call the flask api with the code which returns the summary of the code. */
     public generateDocstring(): Thenable<boolean> {
         if (this.editor == undefined) {
             throw new Error('Some error occured')
@@ -17,8 +17,6 @@ export class AutoDocstring {
         const selection = this.editor.selection
         const document = this.editor.document;
 
-        console.log("starting line", selection.start.line)
-
         const sentences = document.getText(selection);
         const insertPosition = selection.start.with(undefined, 0)
 
@@ -26,6 +24,7 @@ export class AutoDocstring {
             const insertSnippet = "\t#The docstring is being processed!. Please wait\n"
             const snippetRange = new vscode.Range(insertPosition.line, 0, insertPosition.line + 1, 0);
 
+            //Inserting a sample text while the original one is being generated.
             const success = this.editor.insertSnippet(new vscode.SnippetString(insertSnippet), insertPosition)
             console.log("selection", sentences)
             console.log("pos1 ", insertPosition)
@@ -35,11 +34,10 @@ export class AutoDocstring {
                     code: sentences
                 })
                     .then((res: any) => {
-                        // const summary = res.data.message;
                         const response = res.data
                         if (response && response["message"] && response["message"].length) {
                             let summary = response["message"][0];
-                            console.log(summary)
+                            //Inserting the generated summary above the selected function
                             this.editor.edit(editBuilder => {
                                 editBuilder.replace(snippetRange, "#" + summary + "\n");
                             })
@@ -50,7 +48,7 @@ export class AutoDocstring {
                         console.log(err)
                     })
             })
-
+            return success;
 
         } else {
             throw new Error("Please select the entire body of the function")
