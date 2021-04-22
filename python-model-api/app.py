@@ -13,8 +13,8 @@ from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
 app = Flask(__name__)
 
 
-def inference(data):
-    # Calculate bleu
+def predict(data):
+    #Predicts the output given the tokenised data
     eval_sampler = SequentialSampler(data)
     eval_dataloader = DataLoader(
         data, sampler=eval_sampler, batch_size=len(data))
@@ -38,6 +38,7 @@ def inference(data):
 
 
 def get_features(examples):
+    # A function to tokenise the input before passing to predict
     features = convert_examples_to_features(
         examples, args.tokenizer, args, stage="test"
     )
@@ -51,6 +52,7 @@ def get_features(examples):
 
 
 def build_model(model_class, config, tokenizer):
+    #Encoder is the Roberta and decoder is a transformer
     encoder = model_class(config=config)
     decoder_layer = nn.TransformerDecoderLayer(
         d_model=config.hidden_size, nhead=config.num_attention_heads
@@ -65,7 +67,7 @@ def build_model(model_class, config, tokenizer):
         sos_id=tokenizer.cls_token_id,
         eos_id=tokenizer.sep_token_id,
     )
-
+    #Making sure the model weights are downloaded
     assert os.path.exists("pytorch_model.bin"), "Weight is not downloaded."
 
     model.load_state_dict(
@@ -77,7 +79,7 @@ def build_model(model_class, config, tokenizer):
     )
     return model
 
-
+#Creating the Flask API
 def create_app():
     @app.route("/")
     def index():
@@ -95,7 +97,7 @@ def create_app():
             ]
 
             t0 = time.time()
-            message, length = inference(data=get_features(example))
+            message, length = predict(data=get_features(example))
             t1 = time.time()
             result = {
                 'message': message,
@@ -105,6 +107,15 @@ def create_app():
             }
             logger.info(json.dumps(result, indent=4))
             return jsonify(**result)
+
+    @app.route("/tokenizer", methods=["POST"])
+    def tokenizer():
+        if request.method == "POST":
+            payload = request.get_json()
+            tokens = args.tokenizer.tokenize(payload["code"])
+            return jsonify(tokens=tokens)
+
+    return app
 
 
 def main(args):
