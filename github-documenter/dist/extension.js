@@ -338,7 +338,7 @@ for userName in $users
 do
 result=$(git log --author="$userName" --no-merges --shortstat -- ${document} | grep -E "fil(e|es) changed" | awk '{inserted+=$4; deleted+=$6} END {printf "%13s|%15s", inserted, deleted}' -)
 countCommits=$(git shortlog -sn --no-merges --author="$userName" -- ${document} | awk '{print $1}')
-if [[ \${result} != ';;;;' ]]
+if [[ \${result} != '|' ]]
 then
 printf "/*|%20s|%s|%14s|*/\\n" $userName $result $countCommits >> ${document}
 fi
