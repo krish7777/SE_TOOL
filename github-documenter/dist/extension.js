@@ -51,11 +51,13 @@ let technologiesUsed = [];
 function activate(context) {
     // External Documentation Command
     let externalDocumentation = vscode.commands.registerCommand('github-documenter.generateExternalDocs', () => __awaiter(this, void 0, void 0, function* () {
-        var _a;
+        var _a, _b, _c;
         if (!vscode.workspace.workspaceFolders) {
             return vscode.window.showInformationMessage('No folder or workspace opened');
         }
         let folderUri = vscode.workspace.workspaceFolders[0].uri;
+        let tempFile = folderUri.path + '/hello.txt';
+        tempFile = tempFile.replace(':', '');
         //A pop up input box to enter the repository full name
         vscode.window.showInformationMessage('Please Enter the Github Repository name eg. [username]/[repo_name]');
         let githubName = yield vscode.window.showInputBox();
@@ -98,7 +100,10 @@ function activate(context) {
         res = yield axios_1.default.get(`https://api.github.com/repos/${githubName}/community/profile`);
         data = res.data;
         let health_percentage = data && data.health_percentage;
-        let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\n`;
+        let readme_file = data && ((_c = (_b = data.files) === null || _b === void 0 ? void 0 : _b.readme) === null || _c === void 0 ? void 0 : _c.html_url);
+        if (!readme_file)
+            readme_file = 'None';
+        let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\nReadme File: ${readme_file}\n`;
         terminal_1.runGitCommandInTerminal('rm report.txt', folderUri.path);
         terminal_1.runGitCommandInTerminal(`printf "${finalString}" >> report.txt`, folderUri.path);
         //Analysising the technologies used in the repo and the stack and domain information
@@ -140,8 +145,8 @@ function activate(context) {
         }
         //Extracting all the git-related information through terminal
         terminal_1.runGitCommandInTerminal(`printf "\\nLast commit details : \\n" >> report.txt && git log -1  >> report.txt
-printf "\\nBranches List : \\n " >> report.txt && git branch -a >> report.txt
-printf "\\nBranches Last Commit and Committer: \\n " >> report.txt
+printf "\\nBranches List : \\n" >> report.txt && git branch -a >> report.txt
+printf "\\nBranches Last Commit and Committer: \\n" >> report.txt
 git for-each-ref --sort='-committerdate:iso8601' --format='%(committerdate:default)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t >> report.txt
 IFS=$'\\n'
 echo -e "--------------------------------------------------------------------------------------------------------------------------------------"  >> report.txt ;
@@ -156,18 +161,7 @@ filesChanged=$(git log --name-only --author="$userName" --no-merges --pretty=for
 printf "|%20s|%16d|%s|%14s|\\n" $userName $filesChanged $result $countCommits >> report.txt
 done;
 echo -e "--------------------------------------------------------------------------------------------------------------------------------------"  >> report.txt ;
-printf "\n\nNo of commits on each Week Day : \\n" >> report.txt
-printf "\n\n\tDay - No of commits\n" >> report.txt
-for week in Mon Tue Wed Thu Fri Sat Sun
-do
-counter=0
-printf "\\n" >> report.txt
-while read rev 
-do
-	let counter++
-done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{print $1}' )
-printf "\t$week - $counter" >> report.txt
-done
+	
 printf "\n\nCommits on each week day of all contributors : \\n" >> report.txt
 
 echo -e "\\n----------------------------------------------------------------"  >> report.txt ;
@@ -189,8 +183,46 @@ done
 echo -e "" >> report.txt ;
 done
 echo -e "----------------------------------------------------------------"  >> report.txt ;
+	
+printf "\n Number of commits on each Week Day : \n" >> report.txt
+	
+echo -e "\\n--------------------------------------------------"  >> report.txt ;
+echo -e "| Day | Commits | Files | Insertions | Deletions |"  >> report.txt ;
+echo -e "--------------------------------------------------"  >> report.txt ;
+for week in Mon Tue Wed Thu Fri Sat Sun
+do
+counter=0
+file=0
+insert=0
+delete=0
+while read rev 
+do
+	result=$(git show "$rev" --stat | grep -E "fil(e|es) changed" | awk '{files+=$1; inserted+=$4; deleted+=$6;} END {printf "%s", files}' -)
+	echo -e "$result" 
+while IFS= read -r line
+do
+	file=$(expr $file + $line)
+done < "${tempFile}"
+result=$(git show "$rev" --stat | grep -E "fil(e|es) changed" | awk '{files+=$1; inserted+=$4; deleted+=$6;} END {printf "%s", inserted}' -)
+	echo -e "$result" > hello.txt
+while IFS= read -r line
+do
+	insert=$(expr $insert + $line)
+done < "${tempFile}"
+result=$(git show "$rev" --stat | grep -E "fil(e|es) changed" | awk '{files+=$1; inserted+=$4; deleted+=$6;} END {printf "%s", deleted}' -)
+	echo -e "$result" > hello.txt
+while IFS= read -r line
+do
+	delete=$(expr $delete + $line)
+done < "${tempFile}"
+	let counter++
+done < <( git log --pretty='format:%h %cd ' --no-merges | grep $week |  awk '{print $1}' )
+printf "|%5s|%9s|%7s|%12s|%11s|" $week $counter $file $insert $delete >> report.txt
+printf "\n" >> report.txt
+done
+echo -e "--------------------------------------------------"  >> report.txt ;
 
-
+		
 printf "\\n\\nAfter analysing the repo the following roles have been assigned to the contributors : \\n" >> report.txt
 
 for i in UI Bug Backend Frontend Test Deploy
@@ -204,7 +236,7 @@ backend=$(git log --pretty="%an" -i --grep="Backend" --no-merges | sort -u)
 frontend=$(git log --pretty="%an" -i --grep="Frontend" --no-merges | sort -u)
 test=$(git log --pretty="%an" -i --grep="Test" --no-merges | sort -u)
 deploy=$(git log --pretty="%an" -i --grep="Deploy" --no-merges | sort -u)
-			`, folderUri.path);
+`, folderUri.path);
     }));
     /*
     Generate Internal Documentation
