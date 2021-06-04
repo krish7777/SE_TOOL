@@ -36,8 +36,47 @@ Less:3892
 
 Health Percentage: 33
 
+Readme File: https://github.com/krish7777/food4all/blob/main/README.md
+
+Commit Activity for the past 1 year: 
+
+-----------------------------------------------------------------------------------
+|  Month  | Total Commits |  Mon  |  Tue  |  Wed  |  Thu  |  Fri  |  Sat  |  Sun  |
+-----------------------------------------------------------------------------------
+|  Jun20  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Jul20  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Aug20  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Sep20  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Oct20  |          121  |    21 |    20 |    12 |     7 |     7 |     8 |    46 |
+|  Nov20  |           92  |    50 |    23 |     1 |     4 |    11 |     2 |     1 |
+|  Dec20  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Jan21  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Feb21  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Mar21  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  Apr21  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+|  May21  |            0  |     0 |     0 |     0 |     0 |     0 |     0 |     0 |
+-----------------------------------------------------------------------------------
+
+
+Code Frequency of the repository from the start: 
+
+-----------------------------------
+|  Month  | Additions | Deletions |
+-----------------------------------
+|  Oct20  |    31826  |    -5495  |
+|  Nov20  |     5873  |    -3776  |
+|  Dec20  |        0  |        0  |
+|  Jan21  |        0  |        0  |
+|  Feb21  |        0  |        0  |
+|  Mar21  |        0  |        0  |
+|  Apr21  |        0  |        0  |
+|  May21  |        0  |        0  |
+-----------------------------------
+
+
 The domain of the repository is: Web Application 
 The Web Stack used in the repository is : MERN Stack
+Major technologies/dependencies of the project : React,Antd,MongoDB,Express
 
 Last commit details : 
 commit 3d903eb7d3cb7f49d98ecd6d3da89fbd5d572f6d
@@ -46,17 +85,8 @@ Date:   Mon Nov 30 14:23:10 2020 +0530
 
     updated production build
 
-Branches List : 
- * main
-  remotes/origin/HEAD -> origin/main
-  remotes/origin/Modal1
-  remotes/origin/awards
-  remotes/origin/features
-  remotes/origin/main
-  remotes/origin/notif-krish
-
 Branches Last Commit and Committer: 
- Mon Nov 30 14:23:10 2020 +0530  origin/HEAD         Krishnendu Sudheesh
+Mon Nov 30 14:23:10 2020 +0530  origin/HEAD         Krishnendu Sudheesh
 Mon Nov 30 14:23:10 2020 +0530  origin/main         Krishnendu Sudheesh
 Mon Nov 30 12:52:39 2020 +0530  origin/features     arpit1912
 Sun Nov 29 18:29:15 2020 +0530  origin/notif-krish  Krishnendu Sudheesh
@@ -75,19 +105,6 @@ Sat Nov 21 16:51:19 2020 +0530  origin/Modal1       dinkar
 --------------------------------------------------------------------------------------------------------------------------------------
 
 
-No of commits on each Week Day : 
-
-
-Day - No of commits
-
-Mon - 43
-Tue - 13
-Wed - 11
-Thu - 18
-Fri - 10
-Sat - 47
-Sun - 71
-
 Commits on each week day of all contributors : 
 
 ----------------------------------------------------------------
@@ -102,8 +119,19 @@ Commits on each week day of all contributors :
 |            sam3926 |    0|    0|    0|    0|    0|    0|    1|
 ----------------------------------------------------------------
 
+ Number of commits on each Week Day : 
 
-After analysing the repo the following roles have been assigned to the contributors : 
+--------------------------------------------------
+| Day | Commits | Files | Insertions | Deletions |
+--------------------------------------------------
+|  Mon|       43|    761|        2170|        810|
+|  Tue|       13|    361|         846|        333|
+|  Wed|       11|    534|        1214|        590|
+|  Thu|       18|    565|        1945|        578|
+|  Fri|       10|    595|         933|        538|
+|  Sat|       47|   1716|        5112|       1802|
+|  Sun|       71|   3731|       25107|       3612|
+--------------------------------------------------
 
 UI 
 arpit1912
