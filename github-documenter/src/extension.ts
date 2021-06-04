@@ -6,6 +6,7 @@ import allTechnologies from "./technologies.json"
 import fs from 'fs';
 import path from "path"
 import axios from 'axios'
+import moment from 'moment'
 const acorn = require("acorn-loose")
 
 let technologiesUsed: string[] = [];
@@ -75,8 +76,75 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!readme_file)
 			readme_file = 'None'
 
+		res = await axios.get(`https://api.github.com/repos/${githubName}/stats/commit_activity`)
+		let commit_activity = res.data
+		let commit_activity_table = '-----------------------------------------------------------------------------------' + '\n';
+		commit_activity_table += '|  Month  | Total Commits |  Mon  |  Tue  |  Wed  |  Thu  |  Fri  |  Sat  |  Sun  |' + '\n';
+		commit_activity_table += '-----------------------------------------------------------------------------------' + '\n';
 
-		let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\nReadme File: ${readme_file}\n`;
+		let commit_activity_montly = new Map();
+		commit_activity.forEach((commit: any) => {
+			let { total, week, days } = commit;
+			let month_year = moment.unix(week).format('MMMYY')
+			if (commit_activity_montly.get(month_year)?.total && commit_activity_montly.get(month_year)?.days) {
+				let newtotal = commit_activity_montly.get(month_year).total += total
+				let newdays = commit_activity_montly.get(month_year).days.map((x: any, i: any) => x + days[i])
+				commit_activity_montly.set(month_year, {
+					days: newdays,
+					total: newtotal
+				})
+			} else {
+				commit_activity_montly.set(month_year, {
+					days: days,
+					total: total
+				})
+			}
+		});
+
+		for (let [key, value] of commit_activity_montly) {
+			let { total, days } = value
+			let row = `|  ${key}  |  ${total.toString().padStart(11)}  | ${days[0].toString().padStart(5)} | ${days[1].toString().padStart(5)} | ${days[2].toString().padStart(5)} | ${days[3].toString().padStart(5)} | ${days[4].toString().padStart(5)} | ${days[5].toString().padStart(5)} | ${days[6].toString().padStart(5)} |` + '\n';
+			commit_activity_table += row
+		}
+		commit_activity_table += '-----------------------------------------------------------------------------------' + '\n';
+		console.log(commit_activity_table)//Last One year
+
+		res = await axios.get(`https://api.github.com/repos/${githubName}/stats/code_frequency`)
+		let code_frequency = res.data
+		let code_frequency_table = '-----------------------------------' + '\n';
+		code_frequency_table += '|  Month  | Additions | Deletions |' + '\n';
+		code_frequency_table += '-----------------------------------' + '\n';
+		let code_frquency_monthly = new Map();
+		code_frequency.map((code_freq: any) => {
+			let unix_time = code_freq[0];
+			let month_year = moment.unix(unix_time).format('MMMYY');
+			if (code_frquency_monthly.get(month_year)) {
+				let new_additions = code_frquency_monthly.get(month_year).additions + code_freq[1];
+				let new_deletions = code_frquency_monthly.get(month_year).deletions + code_freq[2];
+				code_frquency_monthly.set(month_year, {
+					additions: new_additions,
+					deletions: new_deletions
+				})
+			} else {
+				code_frquency_monthly.set(month_year, {
+					additions: code_freq[1],
+					deletions: code_freq[2]
+				})
+			}
+		})
+		for (let [key, value] of code_frquency_monthly) {
+			let row = `|  ${key}  |  ${value.additions.toString().padStart(7)}  |  ${value.deletions.toString().padStart(7)}  |` + '\n';
+			code_frequency_table += row
+		}
+		code_frequency_table += '-----------------------------------' + '\n';
+		console.log(code_frequency_table)// entire repo
+
+
+
+
+
+
+		let finalString = `Full Name of repo: ${fullName}\n\nDescription: ${description}\n\Creation date of repo: ${created_at}\n\nDate of last push to repo: ${last_pushed_at}\n\nContributors to the repo:\n${contributorsString}\n\nNumber of forks: ${no_forks}\n\nNumber of stars: ${no_stars}\n\nNumber of watchers: ${watchers_count}\n\nMain Language used: ${main_language}\n\nNo of open issues: ${open_issues}\n\nLicense: ${license ? license : "None"}\n\nNo of open pull requests: ${open_pull}\n\nNo. of closed pull requests: ${closed_pull}\n\nAll languages used:\n${allLanguagesString}\nHealth Percentage: ${health_percentage}\n\nReadme File: ${readme_file}\n\nCommit Activity for the past 1 year: \n\n${commit_activity_table}\n\nCode Frequency of the repository from the start: \n\n${code_frequency_table}\n\n`;
 		runGitCommandInTerminal('rm report.txt', folderUri.path)
 		runGitCommandInTerminal(
 			`printf "${finalString}" >> report.txt`, folderUri.path
@@ -128,11 +196,14 @@ export function activate(context: vscode.ExtensionContext) {
 			runGitCommandInTerminal(`echo -e "The Web Stack used in the repository is : ${stackUsed}" >> report.txt`, folderUri.path)
 		}
 
+		if (technologiesUsed.length) {
+			runGitCommandInTerminal(`echo -e "Major technologies/dependencies of the project : ${technologiesUsed}" >> report.txt`, folderUri.path)
+		}
+
 		//Extracting all the git-related information through terminal
 
 		runGitCommandInTerminal(
 			`printf "\\nLast commit details : \\n" >> report.txt && git log -1  >> report.txt
-printf "\\nBranches List : \\n" >> report.txt && git branch -a >> report.txt
 printf "\\nBranches Last Commit and Committer: \\n" >> report.txt
 git for-each-ref --sort='-committerdate:iso8601' --format='%(committerdate:default)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t >> report.txt
 IFS=$'\\n'

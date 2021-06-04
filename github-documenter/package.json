@@ -60,6 +60,7 @@
 	},
 	"dependencies": {
 		"acorn-loose": "^8.0.2",
-		"github-api": "^3.4.0"
+		"github-api": "^3.4.0",
+		"moment": "^2.29.1"
 	}
 }
